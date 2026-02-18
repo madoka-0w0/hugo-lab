@@ -6,9 +6,18 @@
   unsafe = true
 [goldmark.extensions]
 [goldmark.extensions.passthrough]
+  # passthrough 拡張：LaTeX 数式記法をそのまま素通りさせる設定。
+  # Goldmark はデフォルトで _ や * を Markdown 記法として解釈するため、
+  # 数式内の記号が誤変換されてしまう。enable = true にすることで
+  # 下記の区切り文字で囲まれた区間を無変換で後段（MathJax/KaTeX）に渡す。
   enable = true
 [goldmark.extensions.passthrough.delimiters]
+  # block: 独立した行に置くブロック数式の区切り文字
+  #   \[ ... \]  → LaTeX 標準記法
+  #   $$ ... $$  → 慣用記法（どちらでも同じ結果）
   block = [['\[', '\]'], ['$$', '$$']]
+  # inline: 文中に埋め込むインライン数式の区切り文字
+  #   \( ... \)  → 例）クロスセクションは \( \sigma = \frac{d\sigma}{d\Omega} \) で表され…
   inline = [['\(', '\)']]
 
 [highlight]
