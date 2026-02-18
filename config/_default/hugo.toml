@@ -1,11 +1,16 @@
 # -- Site Configuration --
-# Detailed settings will be added in T-02 (config) and T-03 (i18n).
+# Detailed language settings → languages.toml
+# Theme parameters           → params.toml
 
-theme = "congo"
-defaultContentLanguage = "ja"
+theme   = "congo"
+baseURL = "https://madoka-0w0.github.io/hugo-lab/"
+title   = "まど研究室"
+
+defaultContentLanguage         = "ja"
+defaultContentLanguageInSubdir = false
 
 enableRobotsTXT = true
-summaryLength = 0
+summaryLength   = 0
 
 [pagination]
   pagerSize = 15
