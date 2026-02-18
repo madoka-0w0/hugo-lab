@@ -3,6 +3,11 @@
 
 [goldmark]
 [goldmark.renderer]
+  # unsafe = true：Markdown ファイル内の生 HTML をそのままレンダリングする設定。
+  # Goldmark はデフォルトでセキュリティ上の理由から生 HTML を除去するが、
+  # Congo テーマはショートコードや一部レイアウトで生 HTML を前提とするため必須。
+  # また Access ページの Google Maps <iframe> など、
+  # コンテンツ側でも HTML 直書きが必要な場面に対応する。
   unsafe = true
 [goldmark.extensions]
 [goldmark.extensions.passthrough]
