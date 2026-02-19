@@ -1,0 +1,60 @@
+{{/* publications/list.html
+     Publications ページのカスタムレイアウト。
+     data/publications.yaml を読み込み、年度別降順で論文リストを描画する。
+     英語版は不要（論文はすでに英語）。
+*/}}
+{{ define "main" }}
+  <header>
+    {{ if .Params.showBreadcrumbs | default (.Site.Params.list.showBreadcrumbs | default false) }}
+      {{ partial "breadcrumbs.html" . }}
+    {{ end }}
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">{{ .Title }}</h1>
+  </header>
+
+  {{ with .Content }}
+    <section class="prose mt-4 dark:prose-invert max-w-prose">
+      {{ . | emojify }}
+    </section>
+  {{ end }}
+
+  {{ $pubs := .Site.Data.publications }}
+  {{ if $pubs }}
+    <section class="mt-8">
+      {{ $currentYear := 0 }}
+      {{ range $i, $pub := $pubs }}
+        {{ if ne $pub.year $currentYear }}
+          {{ if gt $i 0 }}</ol>{{ end }}
+          <h2 class="pub-year-heading">{{ $pub.year }}</h2>
+          <ol class="pub-list">
+          {{ $currentYear = $pub.year }}
+        {{ end }}
+        <li class="pub-item">
+          <p class="pub-authors">{{ $pub.authors }}</p>
+          <p class="pub-title">
+            {{ if $pub.doi }}
+              "<a href="https://doi.org/{{ $pub.doi }}" target="_blank" rel="noopener noreferrer">{{ $pub.title }}</a>"
+            {{ else }}
+              "{{ $pub.title }}"
+            {{ end }}
+          </p>
+          <p class="pub-ref">
+            <em>{{ $pub.journal }}</em>
+            {{ if $pub.volume }}&nbsp;<strong>{{ $pub.volume }}</strong>{{ end }}
+            {{ if $pub.pages }}, {{ $pub.pages }}{{ end }}
+            ({{ $pub.year }})
+            {{ if $pub.doi }}
+              &ensp;<a class="pub-doi" href="https://doi.org/{{ $pub.doi }}" target="_blank" rel="noopener noreferrer">[DOI]</a>
+            {{ end }}
+          </p>
+        </li>
+      {{ end }}
+      {{ if $pubs }}</ol>{{ end }}
+    </section>
+  {{ else }}
+    <section class="prose mt-10 dark:prose-invert">
+      <p class="border-t py-8">
+        <em>論文データが登録されていません。</em>
+      </p>
+    </section>
+  {{ end }}
+{{ end }}

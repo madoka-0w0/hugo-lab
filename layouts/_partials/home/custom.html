@@ -4,9 +4,9 @@
 
      セクション構成:
        1. Hero          ← layouts/_partials/hero.html
-       2. About         ← T-06 で本文テキストを追加
-       3. Latest News   ← T-06 で実装（content/news/ から最新 N 件を表示）
-       4. Research      ← T-06 で実装（content/research/ のカード）
+       2. About         ← _index.md の本文
+       3. Latest News   ← content/news/ から最新 N 件を表示
+       4. Research      ← content/research/ のサブセクションをカード表示
 */}}
 
 {{/* 1. Hero */}}
@@ -20,43 +20,52 @@
   </div>
 </section>
 
-{{/* 3. Latest News（T-06 で実装。現時点はプレースホルダー） */}}
+{{/* 3. Latest News */}}
 <section class="section-home" id="news">
   <h2>{{ i18n "home.news_title" | default "お知らせ" }}</h2>
   {{ $news := where .Site.RegularPages "Section" "news" }}
   {{ $news = $news | first (.Site.Params.homepage.recentLimit | default 5) }}
   {{ if $news }}
-    <ul>
+    <ul class="news-list">
       {{ range $news }}
         <li>
           <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
-          &nbsp;
           <a href="{{ .Permalink }}">{{ .Title }}</a>
         </li>
       {{ end }}
     </ul>
-    <p><a href="{{ relURL "news/" }}">{{ i18n "home.news_more" | default "ニュース一覧" }} →</a></p>
-  {{ else }}
-    <p><!-- ニュース記事が追加されると自動表示されます --></p>
+    <p class="more-link"><a href="{{ relURL "news/" }}">{{ i18n "home.news_more" | default "ニュース一覧" }} →</a></p>
   {{ end }}
 </section>
 
-{{/* 4. Research Topics（T-06 で実装。現時点はプレースホルダー） */}}
+{{/* 4. Research Topics
+     .Site.Sections から現在の言語に一致する "research" セクションを探し、
+     その直下のサブセクション（研究テーマ）をカード表示する。
+     where .Site.Pages "Section" "research" | "Kind" "section" だと
+     research 自体も含まれてしまうため、.Sections を使用する。
+*/}}
 <section class="section-home" id="research">
   <h2>{{ i18n "home.research_title" | default "研究テーマ" }}</h2>
-  {{ $themes := where .Site.Pages "Section" "research" }}
-  {{ $themes = where $themes "Kind" "section" }}
-  {{ if $themes }}
-    <div class="card-grid">
-      {{ range $themes }}
-        <article class="card">
-          <img src="{{ relURL "images/research/placeholder.png" }}" alt="{{ .Title }}">
-          <div class="card-body">
-            <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-            <p>{{ .Description }}</p>
-          </div>
-        </article>
+  {{ $lang := .Site.Language.Lang }}
+  {{ range where .Site.Sections ".Language.Lang" $lang }}
+    {{ if eq .Section "research" }}
+      {{ with .Sections }}
+        <div class="card-grid">
+          {{ range . }}
+            <article class="card">
+              <img
+                src="{{ with .Params.thumbnail }}{{ relURL . }}{{ else }}{{ relURL "images/research/placeholder.png" }}{{ end }}"
+                alt="{{ .Title }}"
+                loading="lazy"
+              >
+              <div class="card-body">
+                <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+                <p>{{ .Description }}</p>
+              </div>
+            </article>
+          {{ end }}
+        </div>
       {{ end }}
-    </div>
+    {{ end }}
   {{ end }}
 </section>

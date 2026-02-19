@@ -18,6 +18,16 @@ home:
 footer:
   copyright: "Mado Laboratory"
 
+# Members page
+members:
+  faculty: "Faculty"
+  students: "Students"
+  doctoral: "Doctoral"
+  master: "Master's"
+  undergraduate: "Undergraduate"
+  col_name: "Name"
+  col_grade: "Year"
+
 # Search
 search:
   input_placeholder: "Search"
