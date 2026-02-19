@@ -1,0 +1,118 @@
+{{/* members/list.html
+     Members セクション（content/members/_index.md）のカスタムリストレイアウト。
+     Congo の baseof.html を継承し、"main" ブロックを上書きする。
+
+     データソース: data/members.yaml
+     - faculty[]       : 教員（写真・メール・自己紹介付き）
+     - students.doctoral[]    : 博士課程学生（氏名・学年）
+     - students.master[]      : 修士課程学生（氏名・学年）
+     - students.undergraduate[]: 学部生（氏名・学年）
+
+     言語対応: .Site.Language.Lang で JA / EN を判定し、name / name_en 等を切り替える。
+*/}}
+{{ define "main" }}
+  {{ $isEN := eq .Site.Language.Lang "en" }}
+  {{ $m := .Site.Data.members }}
+
+  <header>
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">{{ .Title }}</h1>
+  </header>
+
+  {{/* === 教員 / Faculty === */}}
+  <section class="members-section" id="faculty">
+    <h2 class="members-section-title">{{ i18n "members.faculty" | default "教員" }}</h2>
+
+    {{ range $m.faculty }}
+      <div class="faculty-card">
+        <img
+          class="faculty-photo"
+          src="https://placehold.co/200x200/0055A4/ffffff?text=Photo"
+          alt="{{ if $isEN }}{{ .name_en }}{{ else }}{{ .name }}{{ end }}"
+          width="200"
+          height="200"
+          loading="lazy"
+        >
+        <div class="faculty-info">
+          <h3>{{ if $isEN }}{{ .name_en }}{{ else }}{{ .name }}{{ end }}</h3>
+          <p class="faculty-role">{{ if $isEN }}{{ .role_en }}{{ else }}{{ .role }}{{ end }}</p>
+          <p class="faculty-email">
+            <a href="mailto:{{ .email }}">{{ .email }}</a>
+          </p>
+          {{ if $isEN }}
+            {{ with .bio_en }}<p class="faculty-bio">{{ . }}</p>{{ end }}
+          {{ else }}
+            {{ with .bio }}<p class="faculty-bio">{{ . }}</p>{{ end }}
+          {{ end }}
+        </div>
+      </div>
+    {{ end }}
+  </section>
+
+  {{/* === 学生 / Students === */}}
+  <section class="members-section" id="students">
+    <h2 class="members-section-title">{{ i18n "members.students" | default "学生" }}</h2>
+
+    {{/* 博士課程 / Doctoral */}}
+    {{ if $m.students.doctoral }}
+      <h3 class="members-group-title">{{ i18n "members.doctoral" | default "博士課程" }}</h3>
+      <table class="members-table">
+        <thead>
+          <tr>
+            <th>{{ i18n "members.col_name" | default "氏名" }}</th>
+            <th>{{ i18n "members.col_grade" | default "学年" }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{ range $m.students.doctoral }}
+            <tr>
+              <td>{{ .name }}</td>
+              <td>{{ .grade }}</td>
+            </tr>
+          {{ end }}
+        </tbody>
+      </table>
+    {{ end }}
+
+    {{/* 修士課程 / Master's */}}
+    {{ if $m.students.master }}
+      <h3 class="members-group-title">{{ i18n "members.master" | default "修士課程" }}</h3>
+      <table class="members-table">
+        <thead>
+          <tr>
+            <th>{{ i18n "members.col_name" | default "氏名" }}</th>
+            <th>{{ i18n "members.col_grade" | default "学年" }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{ range $m.students.master }}
+            <tr>
+              <td>{{ .name }}</td>
+              <td>{{ .grade }}</td>
+            </tr>
+          {{ end }}
+        </tbody>
+      </table>
+    {{ end }}
+
+    {{/* 学部生 / Undergraduate */}}
+    {{ if $m.students.undergraduate }}
+      <h3 class="members-group-title">{{ i18n "members.undergraduate" | default "学部生" }}</h3>
+      <table class="members-table">
+        <thead>
+          <tr>
+            <th>{{ i18n "members.col_name" | default "氏名" }}</th>
+            <th>{{ i18n "members.col_grade" | default "学年" }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{ range $m.students.undergraduate }}
+            <tr>
+              <td>{{ .name }}</td>
+              <td>{{ .grade }}</td>
+            </tr>
+          {{ end }}
+        </tbody>
+      </table>
+    {{ end }}
+  </section>
+{{ end }}

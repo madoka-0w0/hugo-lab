@@ -129,3 +129,118 @@ body,
   text-align: right;
   font-size: 0.9rem;
 }
+
+/* --- Members ページ --- */
+.members-section {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+.members-section-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: rgb(var(--color-primary-700));
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid rgb(var(--color-primary-600));
+}
+
+/* 教員カード */
+.faculty-card {
+  display: flex;
+  gap: 2rem;
+  padding: 1.5rem;
+  border: 1px solid rgb(var(--color-neutral-200));
+  border-radius: 0.75rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+}
+
+.faculty-photo {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  flex-shrink: 0;
+}
+
+.faculty-info h3 {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: rgb(var(--color-primary-700));
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+
+.faculty-role {
+  font-size: 1rem;
+  color: rgb(var(--color-neutral-600));
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.faculty-email {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.faculty-email a {
+  color: rgb(var(--color-primary-600));
+  text-decoration: none;
+}
+
+.faculty-email a:hover {
+  text-decoration: underline;
+}
+
+.faculty-bio {
+  margin-top: 0.75rem;
+  color: rgb(var(--color-neutral-700));
+  line-height: 1.75;
+}
+
+/* 学生テーブル */
+.members-group-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: rgb(var(--color-neutral-700));
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.members-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  display: table; /* Congo の table { display: block } を上書き */
+}
+
+.members-table th {
+  text-align: left;
+  padding: 0.625rem 1rem;
+  background-color: rgb(var(--color-primary-50));
+  color: rgb(var(--color-primary-700));
+  font-weight: 600;
+  border-bottom: 2px solid rgb(var(--color-primary-200));
+}
+
+.members-table td {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid rgb(var(--color-neutral-100));
+}
+
+.members-table tr:last-child td {
+  border-bottom: none;
+}
+
+@media (max-width: 640px) {
+  .faculty-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .faculty-email {
+    text-align: left;
+  }
+}

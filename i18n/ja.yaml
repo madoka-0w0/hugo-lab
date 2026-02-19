@@ -19,6 +19,16 @@ home:
 footer:
   copyright: "まど研究室"
 
+# Members ページ
+members:
+  faculty: "教員"
+  students: "学生"
+  doctoral: "博士課程"
+  master: "修士課程"
+  undergraduate: "学部生"
+  col_name: "氏名"
+  col_grade: "学年"
+
 # 検索
 search:
   input_placeholder: "検索"
