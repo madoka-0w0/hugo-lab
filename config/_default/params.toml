@@ -6,10 +6,10 @@
 # カスタムカラー（#0055A4）への切り替えは T-05（レイアウト基盤）で実施。
 colorScheme          = "ocean"
 defaultAppearance    = "light"  # 研究室サイトはライト固定
-autoSwitchAppearance = false
+autoSwitchAppearance = true
 
 enableSearch           = true
-enableCodeCopy         = false  # コードスニペット共有不要
+enableCodeCopy         = true
 enableImageLazyLoading = true
 enableImageWebp        = true
 enableQuicklink        = true
