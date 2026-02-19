@@ -1,0 +1,38 @@
+{{ define "main" }}
+<header class="max-w-prose">
+  <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">{{ .Title }}</h1>
+</header>
+
+{{ if .Content }}
+<section class="prose mt-4 dark:prose-invert max-w-prose">
+  {{ .Content | emojify }}
+</section>
+{{ end }}
+
+{{ $themes := .Pages }}
+{{ if $themes }}
+<div class="card-grid mt-8">
+  {{ range $themes }}
+    {{- $page := . }}
+    {{- $images := .Resources.ByType "image" }}
+    {{- $cover := $images.GetMatch (.Params.cover | default "*cover*") }}
+    <article class="card">
+      {{ with $cover }}
+        <a href="{{ $page.Permalink }}">
+          <img
+            src="{{ .RelPermalink }}"
+            alt="{{ $page.Title }}"
+            class="w-full h-auto rounded-t-md"
+            loading="lazy"
+          >
+        </a>
+      {{ end }}
+      <div class="card-body">
+        <h3><a href="{{ $page.Permalink }}">{{ $page.Title }}</a></h3>
+        <p>{{ $page.Description }}</p>
+      </div>
+    </article>
+  {{ end }}
+</div>
+{{ end }}
+{{ end }}
