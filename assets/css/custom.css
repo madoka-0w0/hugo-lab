@@ -103,6 +103,33 @@ body,
   color: rgb(var(--color-primary-700));
 }
 
+/* --- ニュースリスト（ホームページ） --- */
+.news-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem;
+}
+
+.news-list li {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgb(var(--color-neutral-200));
+}
+
+.news-list time {
+  flex-shrink: 0;
+  font-size: 0.875rem;
+  color: rgb(var(--color-neutral-500));
+  font-variant-numeric: tabular-nums;
+}
+
+.more-link {
+  text-align: right;
+  font-size: 0.9rem;
+}
+
 /* --- Members ページ --- */
 .members-section {
   margin-top: 3rem;
