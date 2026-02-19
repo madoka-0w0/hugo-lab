@@ -244,3 +244,67 @@ body,
     text-align: left;
   }
 }
+
+/* --- Publications ページ --- */
+.pub-year-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: rgb(var(--color-primary-700));
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 3px solid rgb(var(--color-primary-600));
+}
+
+.pub-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pub-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid rgb(var(--color-neutral-200));
+}
+
+.pub-item:last-child {
+  border-bottom: none;
+}
+
+.pub-authors {
+  font-size: 0.9rem;
+  color: rgb(var(--color-neutral-600));
+  margin: 0 0 0.2rem;
+}
+
+.pub-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0.2rem 0;
+}
+
+.pub-title a {
+  color: rgb(var(--color-primary-700));
+  text-decoration: none;
+}
+
+.pub-title a:hover {
+  text-decoration: underline;
+}
+
+.pub-ref {
+  font-size: 0.9rem;
+  color: rgb(var(--color-neutral-600));
+  margin: 0.2rem 0 0;
+}
+
+.pub-doi {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgb(var(--color-primary-600));
+  text-decoration: none;
+}
+
+.pub-doi:hover {
+  text-decoration: underline;
+}

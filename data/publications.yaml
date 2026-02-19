@@ -1,0 +1,43 @@
+# Publications data — まど研究室
+# フォーマット: year（降順）/ authors / title / journal / volume / pages / doi
+# ※ 仮データ。実データに差し替えること。
+
+- year: 2024
+  authors: "A. Mado, T. Tanaka, K. Yamamoto, H. Suzuki et al. (Belle II Collaboration)"
+  title: "Search for lepton-flavor-violating τ → μγ decays at Belle II"
+  journal: "Physical Review Letters"
+  volume: "133"
+  pages: "011801"
+  doi: "10.1103/PhysRevLett.133.011801"
+
+- year: 2023
+  authors: "A. Mado, T. Tanaka, S. Ito, K. Kobayashi et al. (Belle II Collaboration)"
+  title: "Measurement of the branching fraction and CP asymmetry in B → K*γ at Belle II"
+  journal: "Physical Review D"
+  volume: "108"
+  pages: "032001"
+  doi: "10.1103/PhysRevD.108.032001"
+
+- year: 2022
+  authors: "A. Mado, T. Tanaka, Y. Nakamura, M. Watanabe et al. (Belle II Collaboration)"
+  title: "Observation of B⁰ → D*⁻τ⁺ντ and test of lepton universality at Belle II"
+  journal: "Journal of High Energy Physics"
+  volume: "2022"
+  pages: "165"
+  doi: "10.1007/JHEP06(2022)165"
+
+- year: 2022
+  authors: "A. Mado, R. Kimura, T. Tanaka"
+  title: "Development of a scintillator-based time-of-flight detector for the Belle II experiment"
+  journal: "Nuclear Instruments and Methods in Physics Research A"
+  volume: "1036"
+  pages: "166825"
+  doi: "10.1016/j.nima.2022.166825"
+
+- year: 2021
+  authors: "A. Mado, T. Tanaka, H. Inoue et al. (Belle II Collaboration)"
+  title: "First measurement of the inclusive semileptonic branching fraction B → Xclν at Belle II"
+  journal: "Progress of Theoretical and Experimental Physics"
+  volume: "2021"
+  pages: "013C01"
+  doi: "10.1093/ptep/ptaa173"
