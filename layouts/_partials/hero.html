@@ -1,0 +1,28 @@
+{{/* hero.html
+     トップページ専用のヒーローセクション。
+     home/custom.html から呼び出される。
+     画像は static/images/hero/hero.jpg に配置する（後日差し替え）。
+*/}}
+<section class="hero-section">
+  <img
+    src="{{ relURL "images/hero/hero.jpg" }}"
+    alt="{{ .Site.Title }}"
+    loading="eager"
+  >
+  <div class="hero-overlay">
+    <h1>
+      {{- if eq .Site.Language.Lang "en" -}}
+        Mado Laboratory
+      {{- else -}}
+        まど研究室
+      {{- end -}}
+    </h1>
+    <p>
+      {{- if eq .Site.Language.Lang "en" -}}
+        Exploring the Fundamental Laws of the Universe through Particle Physics Experiments
+      {{- else -}}
+        素粒子実験で宇宙の基本法則を探る
+      {{- end -}}
+    </p>
+  </div>
+</section>
