@@ -1,0 +1,16 @@
+# -- English Navigation Menu --
+
+[[main]]
+  name   = "Research"
+  url    = "/en/research/"
+  weight = 10
+
+[[main]]
+  name   = "Members"
+  url    = "/en/members/"
+  weight = 20
+
+[[main]]
+  name   = "Access"
+  url    = "/en/access/"
+  weight = 30

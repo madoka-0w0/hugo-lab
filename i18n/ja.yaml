@@ -1,0 +1,24 @@
+# -- 日本語 UI ラベル（サイト固有）--
+# Congo テーマの themes/congo/i18n/ja.yaml を上書き・拡張する。
+# テーマ側で定義済みのラベル（article.date, code.copy 等）は
+# 変更が必要な場合のみここに記載する。
+
+# ナビゲーション
+nav:
+  scroll_to_top_title: "トップへ戻る"
+  skip_to_main: "本文へスキップ"
+
+# トップページ セクション見出し
+home:
+  about_title: "研究室について"
+  news_title: "お知らせ"
+  news_more: "ニュース一覧"
+  research_title: "研究テーマ"
+
+# フッター
+footer:
+  copyright: "まど研究室"
+
+# 検索
+search:
+  input_placeholder: "検索"

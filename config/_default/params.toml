@@ -1,82 +1,64 @@
-# -- Theme Options --
-# These options control how the theme functions and allow you to
-# customise the display of your website.
-#
-# Refer to the theme docs for more details about each of these parameters.
+# -- Theme Parameters --
+# Congo テーマのオプション設定。
 # https://jpanther.github.io/congo/docs/configuration/#theme-parameters
 
-colorScheme = "congo"
-defaultAppearance = "light" # valid options: light or dark
+# カラースキーム: ocean（#0055A4 系の青）を暫定使用。
+# カスタムカラー（#0055A4）への切り替えは T-05（レイアウト基盤）で実施。
+colorScheme          = "ocean"
+defaultAppearance    = "light"  # 研究室サイトはライト固定
 autoSwitchAppearance = true
 
-enableSearch = true
-enableCodeCopy = true
+enableSearch           = true
+enableCodeCopy         = true
 enableImageLazyLoading = true
-enableImageWebp = true
-enableQuicklink = true
+enableImageWebp        = true
+enableQuicklink        = true
 
-# robots = ""
 fingerprintAlgorithm = "sha256"
 
+# Google Analytics GA4
+# Measurement ID は本番デプロイ後に設定する。
+# analytics.html partial で hugo.Environment == "production" のときのみ有効化。
+# ga4_id = "G-XXXXXXXXXX"
+
 [header]
-  layout = "basic" # valid options: basic, hamburger, hybrid, custom
-  # logo = "img/logo.jpg"
-  # logoDark = "img/logo-dark.jpg"
+  # hamburger: モバイルでハンバーガーメニューに切り替わるレスポンシブヘッダー
+  layout    = "hamburger"
   showTitle = true
 
 [footer]
-  showCopyright = true
-  showThemeAttribution = true
-  showAppearanceSwitcher = true
-  showScrollToTop = true
+  showCopyright          = true
+  showThemeAttribution   = false  # "Powered by Congo" 表示を非表示
+  showAppearanceSwitcher = false
+  showScrollToTop        = true
 
 [homepage]
-  layout = "custom" # valid options: page, profile, custom
-  showRecent = true
+  # custom: _index.md に直接 HTML/shortcode でセクションを組む方式（T-06 で実装）
+  layout      = "custom"
+  showRecent  = true
   recentLimit = 5
 
 [article]
-  showDate = true
-  showDateUpdated = false
-  showAuthor = true
-  showBreadcrumbs = true
-  showDraftLabel = true
-  showEdit = true
-  editURL = "https://github.com/jpanther/congo/tree/dev/exampleSite/content/"
-  editAppendPath = true
-  showHeadingAnchors = true
-  showPagination = true
-  invertPagination = false
-  showReadingTime = true
+  showDate            = true
+  showDateUpdated     = false
+  showAuthor          = false
+  showReadingTime     = false
+  showWordCount       = false
   showTableOfContents = true
-  showTaxonomies = false
-  showWordCount = false
-  showComments = false
-  # sharingLinks = ["facebook", "x-twitter", "mastodon", "pinterest", "reddit", "linkedin", "email", "threads", "telegram", "line", "weibo", "xing", "bluesky"]
+  showBreadcrumbs     = true
+  showDraftLabel      = true
+  showEdit            = false
+  showHeadingAnchors  = true
+  showPagination      = true
 
 [list]
-  showBreadcrumbs = true
-  showSummary = false
-  showTableOfContents = true
-  showTaxonomies = false
-  groupByYear = false
+  showSummary    = true
+  groupByYear    = true
   paginationWidth = 1
 
 [sitemap]
   excludedKinds = ["taxonomy", "term"]
 
-[taxonomy]
-  showTermCount = true
-
-[fathomAnalytics]
-  # site = "ABC12345"
-
-#[umamiAnalytics]
-#  site = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-#  region = "eu"  # Can be either "eu" or "us"
-
 [verification]
   # google = ""
-  # bing = ""
-  # pinterest = ""
-  # yandex = ""
+  # bing   = ""
