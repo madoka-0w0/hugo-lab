@@ -1,0 +1,27 @@
+# メンバーデータ
+# 教員写真は実データ提供前は placehold.co を使用（後日差し替え）
+# 学生は氏名・学年のみ（写真なし）
+
+faculty:
+  - name: "まど 教授"
+    name_en: "Prof. Madoka"
+    role: "教授"
+    role_en: "Professor"
+    email: "madoka@example.ac.jp"
+    bio: "素粒子実験物理学を専門とし、ニュートリノ振動の精密測定に取り組んでいる。大型加速器実験への参加を通じて、素粒子の基本的性質の解明を目指している。研究室では学生・若手研究者の育成にも力を入れている。"
+    bio_en: "Specializing in experimental particle physics, with a focus on precision measurements of neutrino oscillations. Through participation in large-scale accelerator experiments, we aim to elucidate the fundamental properties of elementary particles. The laboratory is also committed to training students and early-career researchers."
+
+students:
+  doctoral:
+    - name: "田中 一郎"
+      grade: "D2"
+  master:
+    - name: "山田 太郎"
+      grade: "M2"
+    - name: "鈴木 花子"
+      grade: "M1"
+  undergraduate:
+    - name: "佐藤 次郎"
+      grade: "B4"
+    - name: "高橋 三郎"
+      grade: "B4"
