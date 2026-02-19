@@ -1,0 +1,104 @@
+/* =====================================================
+   custom.css  — プロジェクト固有スタイル
+   Congo テーマのスタイルをピンポイントで上書きする。
+   テーマファイル（themes/congo/）は直接編集しない。
+   ===================================================== */
+
+/* --- フォント設定 ---
+   extend-head.html で Google Fonts を読み込んだ後に適用する。
+   日本語: Noto Sans JP / 欧文: Inter */
+body,
+.font-sans {
+  font-family: "Inter", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* --- ヒーローセクション --- */
+.hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: rgb(var(--color-primary-900));
+}
+
+.hero-section img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.45;
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: #fff;
+  padding: 2rem 1.5rem;
+}
+
+.hero-overlay h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.hero-overlay p {
+  font-size: clamp(1rem, 2.5vw, 1.375rem);
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+/* --- セクション共通 --- */
+.section-home {
+  padding: 4rem 0;
+}
+
+.section-home h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: rgb(var(--color-primary-700));
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid rgb(var(--color-primary-600));
+}
+
+/* --- カードグリッド（Research Topics） --- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  border: 1px solid rgb(var(--color-neutral-200));
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 4px 20px rgba(0, 85, 164, 0.15);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+.card-body h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: rgb(var(--color-primary-700));
+}

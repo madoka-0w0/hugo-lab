@@ -1,0 +1,15 @@
+{{/* google_analytics.html
+     Congo の analytics.html から呼び出される。
+     hugo.IsProduction（= HUGO_ENVIRONMENT=production）のときのみ有効。
+     Measurement ID は config/_default/params.toml の ga4_id で管理する。
+     ローカル開発時（hugo server）は読み込まれない。
+*/}}
+{{ with .Site.Params.ga4_id }}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ . }}');
+</script>
+{{ end }}
