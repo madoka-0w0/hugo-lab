@@ -1,0 +1,23 @@
+# -- English UI Labels (site-specific) --
+# Overrides and extends themes/congo/i18n/en.yaml.
+# Only labels that differ from Congo's defaults are listed here.
+
+# Navigation
+nav:
+  scroll_to_top_title: "Back to top"
+  skip_to_main: "Skip to main content"
+
+# Homepage section headings
+home:
+  about_title: "About"
+  news_title: "Latest News"
+  news_more: "All News"
+  research_title: "Research"
+
+# Footer
+footer:
+  copyright: "Mado Laboratory"
+
+# Search
+search:
+  input_placeholder: "Search"
