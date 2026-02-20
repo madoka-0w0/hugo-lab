@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>デザイン案一覧 — まど研究室 ホームページリニューアル</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue: #0055A4;
+  --blue-soft: #ddeeff;
+  --border: #e2e8f0;
+  --bg: #f8faff;
+  --text: #1e2a3a;
+  --text-mid: #4a5568;
+  --text-light: #8896a7;
+}
+body { font-family: "Inter","Noto Sans JP",sans-serif; color: var(--text); background: var(--bg); line-height: 1.65; min-height: 100vh; }
+
+header { background: #fff; border-bottom: 1px solid var(--border); padding: 2rem; text-align: center; }
+.header-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.5rem; }
+header h1 { font-size: 1.75rem; font-weight: 700; color: var(--text); letter-spacing: -0.02em; margin-bottom: 0.4rem; }
+header p { font-size: 0.9rem; color: var(--text-mid); }
+.note { display: inline-block; margin-top: 1rem; padding: 0.5em 1.25em; background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; font-size: 0.8rem; color: #92400e; }
+
+main { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; }
+
+.section-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; margin-bottom: 3rem; }
+
+.card { background: #fff; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,85,164,0.1); border-color: var(--blue); }
+
+.card-thumb { height: 200px; display: flex; align-items: center; justify-content: center; font-size: 3rem; position: relative; overflow: hidden; }
+
+/* 各デザインのサムネイル背景 */
+.thumb-1 { background: linear-gradient(135deg, #fff 0%, #f0f5ff 100%); border-bottom: 1px solid var(--border); }
+.thumb-1::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: #0055A4; }
+
+.thumb-2 { background: linear-gradient(135deg, #003d7a 0%, #0055A4 100%); }
+
+.thumb-3 { background: linear-gradient(90deg, #003870 50%, #f0f0f0 50%); }
+
+.thumb-4 { background: linear-gradient(135deg, #0a1628 0%, #0d2a55 50%, #0a3a6e 100%); }
+.thumb-4::before { content: ''; position: absolute; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(0,153,204,0.3), transparent 70%); top: -50px; right: -50px; }
+
+.thumb-5 { background: var(--bg); border-bottom: 1px solid var(--border); }
+.thumb-5::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #003870, #0055A4, #b8960c); }
+
+.thumb-6 { background: radial-gradient(ellipse at 60% 40%, #0a2a5e, #000); }
+.thumb-6::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 1px); background-size: 25px 25px; }
+
+.thumb-7 { background: #1c1c1c; display: grid; grid-template-columns: 80px 1fr; }
+.thumb-7-side { background: #141414; height: 100%; }
+.thumb-7-main { display: flex; flex-direction: column; justify-content: center; padding: 1rem; gap: 0.5rem; }
+.thumb-7-bar { height: 10px; border-radius: 3px; background: #0055A4; opacity: 0.8; }
+.thumb-7-bar:nth-child(2) { width: 80%; opacity: 0.5; }
+.thumb-7-bar:nth-child(3) { width: 60%; opacity: 0.3; }
+
+.thumb-8 { background: #fffdf8; border-bottom: 1px solid #e5e3dc; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; }
+.thumb-8::before { content: 'まど研究室'; font-family: Georgia, serif; font-size: 1.5rem; font-weight: 700; color: #1a1916; }
+.thumb-8::after { content: '────────────────'; font-size: 0.6rem; color: #aaa89e; letter-spacing: 0.1em; }
+
+.thumb-9 { background: #0a0a0a; display: grid; grid-template-columns: 1fr 1fr; }
+.thumb-9-left { display: flex; align-items: center; justify-content: center; padding: 1rem; }
+.thumb-9-left span { font-size: 1.5rem; font-weight: 900; color: #fff; letter-spacing: -0.05em; line-height: 1.1; }
+.thumb-9-left span em { font-style: normal; color: #0055A4; display: block; }
+.thumb-9-right { background: #141414; display: flex; flex-direction: column; justify-content: center; padding: 1.25rem; gap: 1rem; }
+.thumb-9-stat { border-left: 2px solid #0055A4; padding-left: 0.75rem; }
+.thumb-9-stat span { display: block; font-size: 1.1rem; font-weight: 900; color: #fff; font-variant-numeric: tabular-nums; }
+.thumb-9-stat small { font-size: 0.55rem; color: #6a6a6a; letter-spacing: 0.1em; text-transform: uppercase; }
+
+.thumb-10 { background: #f8faff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; }
+.thumb-10-chip { background: #ddeeff; color: #0055A4; font-size: 0.65rem; font-weight: 700; padding: 0.3em 0.9em; border-radius: 100px; letter-spacing: 0.05em; }
+.thumb-10-title { font-size: 1.1rem; font-weight: 700; color: #1e2a3a; letter-spacing: -0.02em; }
+.thumb-10-cards { display: flex; gap: 0.4rem; }
+.thumb-10-card { width: 60px; height: 40px; border-radius: 8px; border: 1px solid #e2e8f0; background: #fff; }
+.thumb-10-card:nth-child(1)::before { content: ''; display: block; height: 4px; background: linear-gradient(90deg, #0055A4, #4f46e5); border-radius: 8px 8px 0 0; }
+.thumb-10-card:nth-child(2)::before { content: ''; display: block; height: 4px; background: linear-gradient(90deg, #0d9488, #0055A4); border-radius: 8px 8px 0 0; }
+.thumb-10-card:nth-child(3)::before { content: ''; display: block; height: 4px; background: linear-gradient(90deg, #f97316, #4f46e5); border-radius: 8px 8px 0 0; }
+
+.card-body { padding: 1.25rem 1.5rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+.card-num { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; color: var(--text-light); margin-bottom: 0.25rem; }
+.card-name { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
+.card-desc { font-size: 0.82rem; color: var(--text-mid); line-height: 1.65; flex: 1; }
+.card-open { display: inline-flex; align-items: center; gap: 0.3rem; margin-top: 1rem; font-size: 0.78rem; font-weight: 600; color: var(--blue); }
+.card-open::after { content: '↗'; }
+
+footer { text-align: center; padding: 2rem; font-size: 0.78rem; color: var(--text-light); border-top: 1px solid var(--border); background: #fff; }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="header-label">まど研究室 ホームページリニューアル</p>
+  <h1>トップページ デザイン案</h1>
+  <p>全10案。各カードをクリックすると別タブでプレビューが開きます。</p>
+  <span class="note">⚠️ 画像・コンテンツはすべてダミーです。実際の研究室情報とは異なります。</span>
+</header>
+
+<main>
+  <p class="section-title">案 1〜5（第1回）</p>
+  <div class="grid">
+
+    <a class="card" href="1-academic-minimal.html" target="_blank">
+      <div class="card-thumb thumb-1">📄</div>
+      <div class="card-body">
+        <p class="card-num">Design 01</p>
+        <p class="card-name">Academic Minimal</p>
+        <p class="card-desc">余白重視・タイポグラフィ中心のシンプルで上品な学術スタイル。セクションラベルとボーダーラインで整理された構成。</p>
+        <span class="card-open">プレビューを開く</span>
+      </div>
+    </a>
+
+    <a class="card" href="2-bold-science.html" target="_blank">
+      <div class="card-thumb thumb-2">🔵</div>
+      <div class="card-body">
+        <p class="card-num">Design 02</p>
+        <p class="card-name">Bold Science</p>
+        <p class="card-desc">ダークネイビーのナビゲーション、01/02/03の大きなセクション番号、力強いタイポグラフィ。現代的で力強い印象。</p>
+        <span class="card-open">プレビューを開く</span>
+      </div>
+    </a>
+
+    <a class="card" href="3-split-hero.html" target="_blank">
+      <div class="card-thumb thumb-3">◧</div>
+      <div class="card-body">
+        <p class="card-num">Design 03</p>
+        <p class="card-name">Split Hero</p>
+        <p class="card-desc">ヒーローを左ダーク/右ライトに分割した非対称レイアウト。サイドラベルとゴールドのアクセント。</p>
+        <span class="card-open">プレビューを開く</span>
+      </div>
+    </a>
+
+    <a class="card" href="4-glassmorphism.html" target="_blank">
+      <div class="card-thumb thumb-4">✦</div>
+      <div class="card-body">
+        <p class="card-num">Design 04</p>
+        <p class="card-name">Glassmorphism</p>
+        <p class="card-desc">深海のような濃紺グラデーション背景にガラス質カード。右側に研究室データパネルを配置したモダンスタイル。</p>
+        <span class="card-open">プレビューを開く</span>
+      </div>
+    </a>
+
+    <a class="card" href="5-elegant-journal.html" target="_blank">
+      <div class="card-thumb thumb-5">📰</div>
+      <div class="card-body">
+        <p class="card-num">Design 05</p>
+        <p class="card-name">Elegant Journal</p>
+        <p class="card-desc">セリフ体フォント・三色ボーダーライン・横型研究カード。学術誌を思わせる格調ある紙面デザイン。</p>
+        <span class="card-open">プレビューを開く</span>
+      </div>
+    </a>
+
+  </div>
+
+  <p class="section-title">案 6〜10（第2回）</p>
+  <div class="grid">
+
+    <a class="card" href="6-cinematic.html" target="_blank">
+      <div class="card-thumb thumb-6">✦</div>
+      <div class="card-body">
+        <p class="card-num">Design 06</p>
+        <p class="card-name">Cinematic</p>
+        <p class="card-desc">星空を模した全画面ダークヒーローから白いコンテンツへの切り替わり。フルスクリーンの映画的な静けさ。</p>
+        <span class="card-open">プレビューを開く</span>
+      </div>
+    </a>
+
+    <a class="card" href="7-dashboard.html" target="_blank">
+      <div class="card-thumb thumb-7">
+        <div class="thumb-7-side"></div>
+        <div class="thumb-7-main">
+          <div class="thumb-7-bar"></div>
+          <div class="thumb-7-bar"></div>
+          <div class="thumb-7-bar"></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-num">Design 07</p>
+        <p class="card-name">Scientific Dashboard</p>
+        <p class="card-desc">サイドバー＋パネルのダッシュボード型レイアウト。実験ステータス・指標・ニュースバッジなど情報密度が高い。</p>
+        <span class="card-open">プレビューを開く</span>
+      </div>
+    </a>
+
+    <a class="card" href="8-editorial-grid.html" target="_blank">
+      <div class="card-thumb thumb-8"></div>
+      <div class="card-body">
+        <p class="card-num">Design 08</p>
+        <p class="card-name">Editorial Grid</p>
+        <p class="card-desc">新聞・アカデミックジャーナル風の雑誌型マルチカラムグリッド。Playfairセリフ体と赤のセクションラベル。</p>
+        <span class="card-open">プレビューを開く</span>
+      </div>
+    </a>
+
+    <a class="card" href="9-monochrome-accent.html" target="_blank">
+      <div class="card-thumb thumb-9">
+        <div class="thumb-9-left"><span>素粒子で<em>宇宙を</em>解く</span></div>
+        <div class="thumb-9-right">
+          <div class="thumb-9-stat"><span>12</span><small>Members</small></div>
+          <div class="thumb-9-stat"><span>48+</span><small>Papers</small></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-num">Design 09</p>
+        <p class="card-name">Monochrome + Accent</p>
+        <p class="card-desc">黒白基調にブルーのみを差し色として使うハイコントラストデザイン。右パネルに数値を配したヒーロー。</p>
+        <span class="card-open">プレビューを開く</span>
+      </div>
+    </a>
+
+    <a class="card" href="10-soft-modern.html" target="_blank">
+      <div class="card-thumb thumb-10">
+        <div class="thumb-10-chip">素粒子物理学実験研究室</div>
+        <div class="thumb-10-title">素粒子で宇宙を解く</div>
+        <div class="thumb-10-cards">
+          <div class="thumb-10-card"></div>
+          <div class="thumb-10-card"></div>
+          <div class="thumb-10-card"></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-num">Design 10</p>
+        <p class="card-name">Soft Modern</p>
+        <p class="card-desc">淡いブルー系背景・丸みのあるカード・カラータグ付きニュース。親しみやすくスタートアップ風のモダンスタイル。</p>
+        <span class="card-open">プレビューを開く</span>
+      </div>
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  まど研究室 ホームページリニューアル検討用 — デザインプレビュー（内部共有資料）
+</footer>
+
+</body>
+</html>

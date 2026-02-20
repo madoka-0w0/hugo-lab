@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design 6 — Cinematic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600;700&family=Noto+Sans+JP:wght@200;300;400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue: #0055A4;
+  --blue-glow: #1a7fff;
+  --cream: #fafaf8;
+  --neutral-100: #f2f2f0;
+  --neutral-200: #e0e0dd;
+  --neutral-500: #888;
+  --neutral-700: #444;
+  --neutral-900: #111;
+}
+html { scroll-behavior: smooth; }
+body { font-family: "Inter","Noto Sans JP",sans-serif; color: var(--neutral-900); background: #000; line-height: 1.7; }
+
+/* ナビ（透過） */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent); }
+.nav-logo { font-size: 0.95rem; font-weight: 600; color: #fff; letter-spacing: 0.05em; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-size: 0.8rem; text-decoration: none; color: rgba(255,255,255,0.7); letter-spacing: 0.08em; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: #fff; }
+
+/* シネマティックヒーロー（フルスクリーン） */
+.hero { position: relative; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
+.hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 60% 40%, #0a2a5e 0%, #030d1e 60%, #000 100%);
+}
+/* 星のような点 */
+.hero-bg::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px);
+  background-size: 200px 200px, 300px 300px, 400px 400px;
+  background-position: 0 0, 100px 50px, 50px 150px;
+}
+.hero-glow { position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(0,100,200,0.25) 0%, transparent 70%); top: 50%; left: 55%; transform: translate(-50%, -50%); }
+.hero-inner { position: relative; z-index: 10; text-align: center; padding: 0 2rem; }
+.hero-label { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 2rem; font-weight: 300; }
+.hero h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 200; color: #fff; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 1.5rem; }
+.hero h1 strong { font-weight: 700; display: block; color: #fff; }
+.hero h1 em { font-style: normal; color: var(--blue-glow); }
+.hero-sub { font-size: 1rem; color: rgba(255,255,255,0.5); max-width: 480px; margin: 0 auto 3rem; font-weight: 300; letter-spacing: 0.02em; }
+.hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.4); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; }
+.hero-scroll::after { content: ''; display: block; width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent); }
+
+/* コンテンツ（白背景） */
+main { background: var(--cream); }
+.container { max-width: 1060px; margin: 0 auto; padding: 0 2.5rem; }
+section { padding: 6rem 0; border-bottom: 1px solid var(--neutral-200); }
+
+/* セクション共通 */
+.sec-head { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 3rem; }
+.sec-line { flex: 1; height: 1px; background: var(--neutral-200); }
+.sec-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--blue); white-space: nowrap; }
+.sec-title { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; letter-spacing: -0.03em; color: var(--neutral-900); }
+.sec-head-wrap { margin-bottom: 3rem; }
+
+/* About */
+.about-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+.about-text { font-size: 1.0625rem; line-height: 2; color: var(--neutral-700); font-weight: 300; }
+.about-highlights { display: flex; flex-direction: column; gap: 1.5rem; }
+.highlight { border-left: 2px solid var(--blue); padding-left: 1.25rem; }
+.highlight-num { font-size: 2rem; font-weight: 700; color: var(--blue); line-height: 1; }
+.highlight-label { font-size: 0.8rem; color: var(--neutral-500); margin-top: 0.2rem; }
+
+/* Research */
+.card-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--neutral-200); border: 1px solid var(--neutral-200); }
+.card { background: var(--cream); padding: 2.5rem 2rem; transition: background 0.25s; cursor: pointer; }
+.card:hover { background: #fff; }
+.card-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--blue); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; }
+.card-icon span { color: #fff; font-size: 1rem; }
+.card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--neutral-900); letter-spacing: -0.01em; }
+.card p { font-size: 0.875rem; color: var(--neutral-500); line-height: 1.75; }
+.card-arrow { font-size: 0.8rem; color: var(--blue); font-weight: 600; margin-top: 1.25rem; display: block; text-decoration: none; }
+
+/* News */
+.news-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+.news-item { padding: 1rem 0; border-bottom: 1px solid var(--neutral-200); }
+.news-date { font-size: 0.72rem; color: var(--neutral-500); margin-bottom: 0.3rem; font-variant-numeric: tabular-nums; }
+.news-title { font-size: 0.9375rem; color: var(--neutral-900); text-decoration: none; line-height: 1.5; display: block; }
+.news-title:hover { color: var(--blue); }
+.more { font-size: 0.82rem; font-weight: 600; color: var(--blue); text-decoration: none; display: inline-block; margin-top: 1.25rem; }
+
+footer { background: #000; color: rgba(255,255,255,0.25); padding: 2rem; text-align: center; font-size: 0.78rem; }
+.badge { position: fixed; top: 0; right: 12px; padding: 0.3em 0.75em; background: var(--blue-glow); color: #fff; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; border-radius: 0 0 6px 6px; z-index: 999; }
+</style>
+</head>
+<body>
+<div class="badge">Design 6 — Cinematic</div>
+
+<nav>
+  <div class="nav-logo">まど研究室</div>
+  <ul class="nav-links">
+    <li><a href="#">Research</a></li>
+    <li><a href="#">Members</a></li>
+    <li><a href="#">Publications</a></li>
+    <li><a href="#">Access</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <p class="hero-label">サンプル大学 理学部物理学科</p>
+    <h1>
+      <em>素粒子</em>の<br>
+      <strong>真実を探る</strong>
+    </h1>
+    <p class="hero-sub">ニュートリノと暗黒物質を手がかりに、宇宙誕生の謎へ迫り続ける実験物理学の研究室。</p>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</div>
+
+<main>
+  <div class="container">
+    <section id="about">
+      <div class="sec-head">
+        <span class="sec-label">About</span>
+        <div class="sec-line"></div>
+      </div>
+      <div class="sec-head-wrap">
+        <h2 class="sec-title">研究室について</h2>
+      </div>
+      <div class="about-cols">
+        <p class="about-text">大型加速器実験や地下実験施設において、ニュートリノの性質の精密測定と暗黒物質の直接探索に取り組んでいます。最先端の検出器技術の開発からビッグデータ解析まで、学生・大学院生が一体となって基礎科学の最前線に挑んでいます。</p>
+        <div class="about-highlights">
+          <div class="highlight"><div class="highlight-num">12</div><div class="highlight-label">研究室メンバー</div></div>
+          <div class="highlight"><div class="highlight-num">48+</div><div class="highlight-label">査読付き論文</div></div>
+          <div class="highlight"><div class="highlight-num">3</div><div class="highlight-label">参加国際実験</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="sec-head">
+        <span class="sec-label">Research</span>
+        <div class="sec-line"></div>
+      </div>
+      <div class="sec-head-wrap">
+        <h2 class="sec-title">研究テーマ</h2>
+      </div>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-icon"><span>⬡</span></div>
+          <h3>素粒子検出器の開発</h3>
+          <p>高感度シリコン検出器を用いた荷電粒子飛跡の精密計測技術の研究開発。</p>
+          <a class="card-arrow" href="#">詳細を見る →</a>
+        </article>
+        <article class="card">
+          <div class="card-icon"><span>◈</span></div>
+          <h3>高エネルギー実験データ解析</h3>
+          <p>機械学習を活用した信号識別と統計解析手法の開発。</p>
+          <a class="card-arrow" href="#">詳細を見る →</a>
+        </article>
+        <article class="card">
+          <div class="card-icon"><span>◎</span></div>
+          <h3>ニュートリノ振動精密測定</h3>
+          <p>長基線実験でCP非保存の探索に取り組む。</p>
+          <a class="card-arrow" href="#">詳細を見る →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="news">
+      <div class="sec-head">
+        <span class="sec-label">News</span>
+        <div class="sec-line"></div>
+      </div>
+      <div class="sec-head-wrap">
+        <h2 class="sec-title">お知らせ</h2>
+      </div>
+      <div class="news-cols">
+        <div>
+          <div class="news-item"><div class="news-date">2026.01.15</div><a class="news-title" href="#">国際学会 ICHEP 2026 で招待講演を行いました</a></div>
+          <div class="news-item"><div class="news-date">2025.12.01</div><a class="news-title" href="#">Physical Review Letters に論文が掲載されました</a></div>
+        </div>
+        <div>
+          <div class="news-item"><div class="news-date">2025.11.10</div><a class="news-title" href="#">大学院生募集のお知らせ（2026年度）</a></div>
+          <div class="news-item"><div class="news-date">2025.10.05</div><a class="news-title" href="#">研究室見学会を開催します</a></div>
+        </div>
+      </div>
+      <a class="more" href="#">ニュース一覧 →</a>
+    </section>
+  </div>
+</main>
+
+<footer>© 2026 まど研究室 / サンプル大学 理学部物理学科</footer>
+</body>
+</html>

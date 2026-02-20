@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design 8 — Editorial Grid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue: #0055A4;
+  --blue-mid: #1266c0;
+  --blue-pale: #edf4ff;
+  --red: #c41e3a;
+  --cream: #fffdf8;
+  --neutral-100: #f7f6f2;
+  --neutral-200: #e5e3dc;
+  --neutral-400: #aaa89e;
+  --neutral-600: #5a5852;
+  --neutral-900: #1a1916;
+}
+body { font-family: "Inter","Noto Sans JP",sans-serif; color: var(--neutral-900); background: var(--cream); line-height: 1.65; }
+
+/* トップ */
+.masthead { border-bottom: 3px double var(--neutral-200); background: var(--cream); }
+.masthead-top { max-width: 1200px; margin: 0 auto; padding: 0.75rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--neutral-200); }
+.masthead-univ { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--neutral-400); }
+.masthead-date { font-size: 0.68rem; color: var(--neutral-400); }
+.masthead-main { max-width: 1200px; margin: 0 auto; padding: 1.5rem 2rem; text-align: center; border-bottom: 1px solid var(--neutral-200); }
+.masthead-title { font-family: "Playfair Display",serif; font-size: clamp(2.4rem, 6vw, 4.5rem); font-weight: 800; color: var(--neutral-900); letter-spacing: -0.02em; line-height: 1; margin-bottom: 0.4rem; }
+.masthead-sub { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--neutral-400); margin-bottom: 1rem; }
+.masthead-nav { display: flex; justify-content: center; gap: 0; list-style: none; border-top: 1px solid var(--neutral-200); padding-top: 0.75rem; }
+.masthead-nav li a { font-size: 0.75rem; padding: 0 1.5rem; text-decoration: none; color: var(--neutral-600); letter-spacing: 0.06em; font-weight: 600; border-right: 1px solid var(--neutral-200); }
+.masthead-nav li:last-child a { border-right: none; }
+.masthead-nav li a:hover { color: var(--blue); }
+
+/* コンテンツ */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+/* ヒーローグリッド（雑誌風フロント） */
+.front { display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: auto auto; gap: 0; border-bottom: 2px solid var(--neutral-200); }
+.feature-main { border-right: 1px solid var(--neutral-200); padding: 2.5rem 2.5rem 2.5rem 0; }
+.feature-img { width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg, #061524 0%, #0a2e6e 100%); border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+.feature-img span { color: rgba(255,255,255,0.15); font-size: 0.9rem; }
+.feature-section-label { font-size: 0.65rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
+.feature-main h1 { font-family: "Playfair Display",serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; line-height: 1.2; color: var(--neutral-900); margin-bottom: 1rem; }
+.feature-main .deck { font-size: 1rem; color: var(--neutral-600); line-height: 1.75; max-width: 560px; font-weight: 300; }
+.feature-side { padding: 2rem 0 2rem 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
+
+/* サイドメモ */
+.side-item { padding-bottom: 1.5rem; border-bottom: 1px solid var(--neutral-200); }
+.side-item:last-child { border-bottom: none; padding-bottom: 0; }
+.side-label { font-size: 0.62rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-bottom: 0.4rem; }
+.side-item h3 { font-family: "Playfair Display",serif; font-size: 1.0625rem; font-weight: 700; color: var(--neutral-900); line-height: 1.3; margin-bottom: 0.4rem; }
+.side-item p { font-size: 0.8rem; color: var(--neutral-600); line-height: 1.65; }
+.side-item a { font-size: 0.75rem; color: var(--blue); font-weight: 600; text-decoration: none; }
+
+/* Research セクション */
+.research-section { padding: 2.5rem 0; border-bottom: 2px solid var(--neutral-200); }
+.section-rule { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+.rule-label { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--neutral-900); white-space: nowrap; }
+.rule-line { flex: 1; height: 1px; background: var(--neutral-200); }
+.rule-line-thick { border-top: 2px solid var(--neutral-900); border-bottom: 1px solid var(--neutral-200); padding-top: 3px; flex: 1; }
+.card-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.card-article {}
+.card-img { width: 100%; height: 140px; background: linear-gradient(135deg, #0a1e3d, #0a4080); border-radius: 3px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; }
+.card-img span { color: rgba(255,255,255,0.15); font-size: 0.75rem; }
+.card-label { font-size: 0.62rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 0.4rem; }
+.card-article h3 { font-family: "Playfair Display",serif; font-size: 1.0625rem; font-weight: 700; line-height: 1.3; color: var(--neutral-900); margin-bottom: 0.5rem; }
+.card-article p { font-size: 0.8rem; color: var(--neutral-600); line-height: 1.65; }
+.card-link { font-size: 0.75rem; font-weight: 600; color: var(--blue); text-decoration: none; display: inline-block; margin-top: 0.5rem; }
+
+/* 下部 2列 */
+.bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; padding: 2.5rem 0; }
+.col-title { font-family: "Playfair Display",serif; font-size: 1.25rem; font-weight: 700; color: var(--neutral-900); padding-bottom: 0.75rem; border-bottom: 2px solid var(--neutral-900); margin-bottom: 1.25rem; }
+.news-item { padding: 0.875rem 0; border-bottom: 1px solid var(--neutral-200); }
+.news-date { font-size: 0.68rem; color: var(--neutral-400); display: block; margin-bottom: 0.2rem; font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
+.news-title { font-size: 0.875rem; color: var(--neutral-900); text-decoration: none; line-height: 1.5; display: block; }
+.news-title:hover { color: var(--blue); }
+.more { font-size: 0.78rem; font-weight: 600; color: var(--blue); text-decoration: none; display: inline-block; margin-top: 1rem; }
+
+footer { border-top: 3px double var(--neutral-200); padding: 1.5rem 2rem; text-align: center; font-size: 0.72rem; color: var(--neutral-400); background: var(--cream); }
+.badge { position: fixed; top: 0; right: 12px; background: var(--red); color: #fff; font-size: 0.7rem; font-weight: 700; padding: 0.3em 0.75em; border-radius: 0 0 6px 6px; letter-spacing: 0.1em; z-index: 999; }
+</style>
+</head>
+<body>
+<div class="badge">Design 8 — Editorial Grid</div>
+
+<header class="masthead">
+  <div class="masthead-top">
+    <span class="masthead-univ">サンプル大学 理学部物理学科</span>
+    <span class="masthead-date">2026年2月20日</span>
+  </div>
+  <div class="masthead-main">
+    <h1 class="masthead-title">まど研究室</h1>
+    <p class="masthead-sub">Particle Physics Laboratory — Since 2003</p>
+    <ul class="masthead-nav">
+      <li><a href="#">Research</a></li>
+      <li><a href="#">Members</a></li>
+      <li><a href="#">Publications</a></li>
+      <li><a href="#">News</a></li>
+      <li><a href="#">Access</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="container">
+  <div class="front">
+    <div class="feature-main">
+      <div class="feature-img"><span>[ hero image ]</span></div>
+      <p class="feature-section-label">About the Laboratory</p>
+      <h1>素粒子実験で<br>宇宙の起源に迫る</h1>
+      <p class="deck">大型加速器実験や地下実験施設において、ニュートリノの性質の精密測定と暗黒物質の直接探索に取り組んでいます。最先端の検出器技術の開発からビッグデータ解析まで、学生・大学院生が一体となって基礎科学の最前線に挑んでいます。</p>
+    </div>
+    <div class="feature-side">
+      <div class="side-item">
+        <p class="side-label">Latest News</p>
+        <h3>ICHEP 2026 で招待講演を行いました</h3>
+        <p>2026年1月 — 国際学会にて本研究室の成果を発表しました。</p>
+        <a href="#">続きを読む →</a>
+      </div>
+      <div class="side-item">
+        <p class="side-label">New Paper</p>
+        <h3>Physical Review Letters に論文掲載</h3>
+        <p>ニュートリノ振動の精密測定に関する最新成果が掲載されました。</p>
+        <a href="#">論文を見る →</a>
+      </div>
+      <div class="side-item">
+        <p class="side-label">Recruitment</p>
+        <h3>2026年度 大学院生募集</h3>
+        <p>共に宇宙の謎に挑む大学院生を募集しています。</p>
+        <a href="#">詳細はこちら →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="research-section">
+    <div class="section-rule">
+      <div class="rule-line-thick"></div>
+      <span class="rule-label">Research Themes</span>
+      <div class="rule-line-thick"></div>
+    </div>
+    <div class="card-row">
+      <article class="card-article">
+        <div class="card-img"><span>画像</span></div>
+        <p class="card-label">Detector</p>
+        <h3>素粒子検出器の開発</h3>
+        <p>高感度シリコン検出器を用いた荷電粒子飛跡の精密計測技術の研究開発。</p>
+        <a class="card-link" href="#">詳細を見る →</a>
+      </article>
+      <article class="card-article">
+        <div class="card-img"><span>画像</span></div>
+        <p class="card-label">Analysis</p>
+        <h3>高エネルギー実験データ解析</h3>
+        <p>機械学習を活用した信号識別と統計解析手法の開発。</p>
+        <a class="card-link" href="#">詳細を見る →</a>
+      </article>
+      <article class="card-article">
+        <div class="card-img"><span>画像</span></div>
+        <p class="card-label">Neutrino</p>
+        <h3>ニュートリノ振動精密測定</h3>
+        <p>長基線実験でCP非保存の探索に取り組む。</p>
+        <a class="card-link" href="#">詳細を見る →</a>
+      </article>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div>
+      <h2 class="col-title">お知らせ</h2>
+      <div class="news-item"><span class="news-date">2026年1月15日</span><a class="news-title" href="#">国際学会 ICHEP 2026 で招待講演を行いました</a></div>
+      <div class="news-item"><span class="news-date">2025年12月1日</span><a class="news-title" href="#">Physical Review Letters に論文が掲載されました</a></div>
+      <div class="news-item"><span class="news-date">2025年11月10日</span><a class="news-title" href="#">大学院生募集のお知らせ（2026年度）</a></div>
+      <a class="more" href="#">お知らせ一覧 →</a>
+    </div>
+    <div>
+      <h2 class="col-title">最近の論文</h2>
+      <div class="news-item"><span class="news-date">Phys. Rev. Lett. 135 (2025)</span><a class="news-title" href="#">Precise Measurement of νμ Disappearance at J-PARC</a></div>
+      <div class="news-item"><span class="news-date">JINST 20 (2025)</span><a class="news-title" href="#">Performance of Silicon Pixel Detector in High-Radiation Environment</a></div>
+      <div class="news-item"><span class="news-date">Nucl. Instrum. Meth. (2024)</span><a class="news-title" href="#">Graph Neural Network for Particle Identification</a></div>
+      <a class="more" href="#">論文一覧 →</a>
+    </div>
+  </div>
+</div>
+
+<footer>© 2026 まど研究室 / サンプル大学 理学部物理学科. All rights reserved.</footer>
+</body>
+</html>

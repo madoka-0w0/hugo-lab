@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design 9 — Monochrome + Accent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue: #0055A4;
+  --blue-hover: #003d7a;
+  --black: #0a0a0a;
+  --near-black: #141414;
+  --gray-900: #1c1c1c;
+  --gray-700: #3a3a3a;
+  --gray-500: #6a6a6a;
+  --gray-300: #c0c0c0;
+  --gray-100: #f0f0f0;
+  --white: #fafafa;
+}
+body { font-family: "Inter","Noto Sans JP",sans-serif; color: var(--black); background: var(--white); line-height: 1.6; }
+
+/* ナビ */
+nav { background: var(--black); padding: 0 2.5rem; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-size: 0.9rem; font-weight: 800; color: var(--white); letter-spacing: -0.02em; }
+.nav-logo span { color: var(--blue); }
+.nav-links { display: flex; gap: 0; list-style: none; }
+.nav-links a { display: block; padding: 0 1.25rem; height: 56px; line-height: 56px; font-size: 0.78rem; font-weight: 600; text-decoration: none; color: var(--gray-300); letter-spacing: 0.04em; transition: color 0.15s; border-bottom: 2px solid transparent; }
+.nav-links a:hover { color: var(--white); border-bottom-color: var(--blue); }
+
+/* ヒーロー */
+.hero { background: var(--black); color: var(--white); min-height: 85vh; display: flex; align-items: stretch; }
+.hero-left { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 6rem 4rem 6rem 5rem; max-width: 640px; }
+.hero-left h1 { font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 900; line-height: 1.0; letter-spacing: -0.05em; margin-bottom: 2rem; }
+.hero-left h1 .blue { color: var(--blue); display: block; }
+.hero-divider { width: 48px; height: 3px; background: var(--blue); margin-bottom: 1.75rem; }
+.hero-left p { font-size: 1rem; color: var(--gray-300); max-width: 440px; line-height: 1.8; font-weight: 300; margin-bottom: 2.5rem; }
+.hero-link { display: inline-flex; align-items: center; gap: 0.75rem; font-size: 0.85rem; font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; }
+.hero-link::after { content: '→'; font-size: 1.1rem; transition: transform 0.2s; }
+.hero-link:hover::after { transform: translateX(4px); }
+.hero-right { flex: 1; background: var(--near-black); display: grid; grid-template-rows: 1fr 1fr; }
+.hero-stat-item { padding: 3rem; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; justify-content: center; position: relative; }
+.hero-stat-item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: transparent; transition: background 0.2s; }
+.hero-stat-item:hover::before { background: var(--blue); }
+.hero-stat-num { font-size: 3.5rem; font-weight: 900; color: var(--white); line-height: 1; letter-spacing: -0.05em; margin-bottom: 0.4rem; }
+.hero-stat-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray-500); }
+
+/* コンテンツ */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 2.5rem; }
+section { padding: 5.5rem 0; border-bottom: 1px solid var(--gray-100); }
+
+/* セクションヘッダー */
+.sec-h { margin-bottom: 3.5rem; }
+.sec-h .label { font-size: 0.65rem; font-weight: 800; letter-spacing: 0.25em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.5rem; display: block; }
+.sec-h h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; letter-spacing: -0.04em; color: var(--black); }
+
+/* About */
+.about-inner { display: grid; grid-template-columns: 1fr 340px; gap: 5rem; align-items: start; }
+.about-text { font-size: 1.0625rem; line-height: 1.9; color: var(--gray-700); font-weight: 300; }
+.about-panel { background: var(--black); color: var(--white); padding: 2rem; }
+.about-panel-title { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 1.25rem; }
+.about-kv { display: flex; justify-content: space-between; align-items: baseline; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.about-kv:last-child { border-bottom: none; }
+.about-k { font-size: 0.8rem; color: var(--gray-500); }
+.about-v { font-size: 1.25rem; font-weight: 800; color: var(--white); }
+
+/* Research */
+.research-list { display: flex; flex-direction: column; }
+.research-item { display: grid; grid-template-columns: 48px 1fr; gap: 2rem; align-items: start; padding: 2.5rem 0; border-bottom: 1px solid var(--gray-100); transition: background 0.15s; cursor: pointer; }
+.research-item:first-child { border-top: 1px solid var(--gray-100); }
+.research-item:hover { padding-left: 0.5rem; }
+.research-num { font-size: 0.75rem; font-weight: 800; color: var(--blue); letter-spacing: 0.05em; padding-top: 0.25rem; }
+.research-content h3 { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.03em; color: var(--black); margin-bottom: 0.5rem; transition: color 0.15s; }
+.research-item:hover h3 { color: var(--blue); }
+.research-content p { font-size: 0.9rem; color: var(--gray-500); line-height: 1.7; max-width: 580px; }
+.research-arrow { font-size: 0.8rem; font-weight: 700; color: var(--blue); text-decoration: none; margin-top: 0.75rem; display: inline-block; letter-spacing: 0.04em; }
+
+/* News */
+.news-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.news-item { border-bottom: 1px solid var(--gray-100); padding: 1rem 0; }
+.news-date { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; color: var(--blue); margin-bottom: 0.3rem; display: block; }
+.news-title { font-size: 0.9rem; color: var(--black); text-decoration: none; font-weight: 500; line-height: 1.5; display: block; }
+.news-title:hover { color: var(--blue); }
+.more { font-size: 0.78rem; font-weight: 800; color: var(--black); text-decoration: none; display: inline-block; margin-top: 1.25rem; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 2px solid var(--blue); padding-bottom: 1px; }
+
+footer { background: var(--black); color: var(--gray-500); padding: 2rem; text-align: center; font-size: 0.75rem; }
+.badge { position: fixed; top: 0; right: 12px; background: var(--blue); color: #fff; font-size: 0.7rem; font-weight: 700; padding: 0.3em 0.75em; border-radius: 0 0 6px 6px; letter-spacing: 0.1em; z-index: 999; }
+</style>
+</head>
+<body>
+<div class="badge">Design 9 — Monochrome + Accent</div>
+
+<nav>
+  <div class="nav-logo">まど<span>.</span>lab</div>
+  <ul class="nav-links">
+    <li><a href="#">Research</a></li>
+    <li><a href="#">Members</a></li>
+    <li><a href="#">Publications</a></li>
+    <li><a href="#">Access</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <h1>素粒子で<span class="blue">宇宙を</span>解く</h1>
+    <div class="hero-divider"></div>
+    <p>ニュートリノの精密測定と暗黒物質の直接探索を通じ、宇宙誕生の謎に挑む素粒子物理学実験研究室。</p>
+    <a class="hero-link" href="#">研究内容を見る</a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stat-item">
+      <div class="hero-stat-num">12</div>
+      <div class="hero-stat-label">Research Members</div>
+    </div>
+    <div class="hero-stat-item">
+      <div class="hero-stat-num">48<span style="font-size:2rem">+</span></div>
+      <div class="hero-stat-label">Published Papers</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <section id="about">
+    <div class="sec-h">
+      <span class="label">About</span>
+      <h2>研究室について</h2>
+    </div>
+    <div class="about-inner">
+      <p class="about-text">大型加速器実験や地下実験施設において、ニュートリノの性質の精密測定と暗黒物質の直接探索に取り組んでいます。最先端の検出器技術の開発からビッグデータ解析まで、学生・大学院生が一体となって基礎科学の最前線に挑んでいます。</p>
+      <div class="about-panel">
+        <div class="about-panel-title">Lab Stats</div>
+        <div class="about-kv"><span class="about-k">設立</span><span class="about-v">2003</span></div>
+        <div class="about-kv"><span class="about-k">メンバー</span><span class="about-v">12</span></div>
+        <div class="about-kv"><span class="about-k">論文数</span><span class="about-v">48+</span></div>
+        <div class="about-kv"><span class="about-k">実験</span><span class="about-v">3</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="sec-h">
+      <span class="label">Research</span>
+      <h2>研究テーマ</h2>
+    </div>
+    <div class="research-list">
+      <div class="research-item">
+        <span class="research-num">01</span>
+        <div class="research-content">
+          <h3>素粒子検出器の開発</h3>
+          <p>高感度シリコン検出器を用いた荷電粒子飛跡の精密計測技術の研究開発。放射線耐性の向上と読み出し高速化を追求しています。</p>
+          <a class="research-arrow" href="#">詳細を見る →</a>
+        </div>
+      </div>
+      <div class="research-item">
+        <span class="research-num">02</span>
+        <div class="research-content">
+          <h3>高エネルギー実験データ解析</h3>
+          <p>グラフニューラルネットワークを活用した粒子識別と、系統誤差の精密評価手法の開発。</p>
+          <a class="research-arrow" href="#">詳細を見る →</a>
+        </div>
+      </div>
+      <div class="research-item">
+        <span class="research-num">03</span>
+        <div class="research-content">
+          <h3>ニュートリノ振動精密測定</h3>
+          <p>長基線ニュートリノ実験でCP非保存の探索に取り組む。宇宙の物質・反物質非対称性の起源解明を目指します。</p>
+          <a class="research-arrow" href="#">詳細を見る →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="news">
+    <div class="sec-h">
+      <span class="label">News</span>
+      <h2>お知らせ</h2>
+    </div>
+    <div class="news-2col">
+      <div>
+        <div class="news-item"><span class="news-date">2026.01.15</span><a class="news-title" href="#">ICHEP 2026 で招待講演を行いました</a></div>
+        <div class="news-item"><span class="news-date">2025.12.01</span><a class="news-title" href="#">Phys. Rev. Lett. に論文が掲載されました</a></div>
+        <a class="more" href="#">一覧を見る</a>
+      </div>
+      <div>
+        <div class="news-item"><span class="news-date">2025.11.10</span><a class="news-title" href="#">大学院生募集のお知らせ（2026年度）</a></div>
+        <div class="news-item"><span class="news-date">2025.10.05</span><a class="news-title" href="#">研究室見学会を開催します</a></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>© 2026 まど研究室 / サンプル大学 理学部物理学科</footer>
+</body>
+</html>

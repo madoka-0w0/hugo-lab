@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design 4 — Glassmorphism</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue: #0055A4;
+  --blue-glow: rgba(0,85,164,0.35);
+  --teal: #0099cc;
+  --neutral-100: #f4f6fa;
+  --neutral-200: #e2e8f0;
+  --neutral-500: #64748b;
+  --neutral-700: #334155;
+  --neutral-900: #0f172a;
+}
+body { font-family: "Inter","Noto Sans JP",sans-serif; color: var(--neutral-900); background: var(--neutral-100); line-height: 1.7; }
+
+/* ナビ */
+nav { position: sticky; top: 0; z-index: 100; background: rgba(244,246,250,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.6); padding: 0 2.5rem; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-size: 1rem; font-weight: 700; color: var(--blue); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-size: 0.875rem; text-decoration: none; color: var(--neutral-700); }
+.nav-links a:hover { color: var(--blue); }
+
+/* ヒーロー */
+.hero { position: relative; min-height: 90vh; display: flex; align-items: center; overflow: hidden;
+  background: linear-gradient(135deg, #0a1628 0%, #0d2a55 40%, #0a3a6e 70%, #0d4a8a 100%); }
+/* 背景の光の球 */
+.hero::before { content: ''; position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(0,153,204,0.25) 0%, transparent 70%); top: -100px; right: -100px; }
+.hero::after { content: ''; position: absolute; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(0,85,164,0.3) 0%, transparent 70%); bottom: -50px; left: 100px; }
+/* グリッド線 */
+.hero-grid { position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 60px 60px; }
+.hero-inner { max-width: 1100px; margin: 0 auto; padding: 0 2.5rem; position: relative; z-index: 10; display: grid; grid-template-columns: 1fr 380px; gap: 4rem; align-items: center; }
+.hero-text {}
+.hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35em 1em; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 100px; color: rgba(255,255,255,0.7); font-size: 0.75rem; letter-spacing: 0.08em; margin-bottom: 2rem; backdrop-filter: blur(10px); }
+.hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #4ade80; }
+.hero h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 700; color: #fff; line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+.hero h1 span { background: linear-gradient(90deg, #7ab8ff, #00d4ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-sub { font-size: 1rem; color: rgba(255,255,255,0.65); max-width: 480px; margin-bottom: 2.5rem; line-height: 1.85; }
+.hero-btns { display: flex; gap: 1rem; }
+.btn-glass { padding: 0.7rem 1.75rem; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); color: #fff; font-size: 0.9rem; font-weight: 600; text-decoration: none; border-radius: 8px; backdrop-filter: blur(10px); transition: background 0.2s; }
+.btn-glass:hover { background: rgba(255,255,255,0.2); }
+.btn-solid { padding: 0.7rem 1.75rem; background: var(--teal); color: #fff; font-size: 0.9rem; font-weight: 700; text-decoration: none; border-radius: 8px; transition: opacity 0.2s; }
+
+/* ガラスカード（ヒーロー右側） */
+.hero-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 2rem; backdrop-filter: blur(20px); }
+.hero-card-title { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1.25rem; }
+.metric-item { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.metric-item:last-child { border-bottom: none; }
+.metric-label { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+.metric-val { font-size: 1.25rem; font-weight: 700; color: #fff; }
+.metric-val small { font-size: 0.7rem; font-weight: 400; color: rgba(255,255,255,0.4); }
+
+/* コンテンツ */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 2.5rem; }
+section { padding: 5rem 0; }
+
+/* セクション */
+.section-pill { display: inline-block; padding: 0.2em 0.75em; background: rgba(0,85,164,0.08); color: var(--blue); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; border-radius: 100px; margin-bottom: 0.75rem; }
+.section-title { font-size: clamp(1.6rem, 3vw, 2rem); font-weight: 700; color: var(--neutral-900); letter-spacing: -0.02em; margin-bottom: 2.5rem; }
+
+/* About */
+.about-card { background: #fff; border-radius: 16px; padding: 2.5rem; border: 1px solid var(--neutral-200); }
+.about-text { font-size: 1.0625rem; line-height: 1.9; color: var(--neutral-700); }
+
+/* Research カード */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+.card { background: #fff; border-radius: 16px; overflow: hidden; border: 1px solid var(--neutral-200); transition: transform 0.2s, box-shadow 0.2s; }
+.card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0,85,164,0.1); }
+.card-img { height: 150px; background: linear-gradient(135deg, #0a1628, #0d3a7a); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.card-img::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 70% 30%, rgba(0,212,255,0.2), transparent 60%); }
+.card-img span { color: rgba(255,255,255,0.2); font-size: 0.8rem; z-index: 1; position: relative; }
+.card-body { padding: 1.5rem; }
+.card-body h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--neutral-900); }
+.card-body p { font-size: 0.875rem; color: var(--neutral-500); line-height: 1.7; }
+.card-link { font-size: 0.8rem; font-weight: 600; color: var(--blue); text-decoration: none; margin-top: 1rem; display: inline-block; }
+
+/* News */
+.news-wrap { background: #fff; border-radius: 16px; border: 1px solid var(--neutral-200); overflow: hidden; }
+.news-item { display: flex; gap: 1.25rem; align-items: baseline; padding: 1rem 1.5rem; border-bottom: 1px solid var(--neutral-200); }
+.news-item:last-child { border-bottom: none; }
+.news-date { font-size: 0.75rem; color: var(--neutral-500); white-space: nowrap; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+.news-title { font-size: 0.9rem; text-decoration: none; color: var(--neutral-900); }
+.news-title:hover { color: var(--blue); }
+.more { font-size: 0.85rem; font-weight: 600; color: var(--blue); text-decoration: none; display: inline-block; margin-top: 1.25rem; }
+
+footer { background: var(--neutral-900); color: rgba(255,255,255,0.35); padding: 2rem; text-align: center; font-size: 0.8rem; }
+.badge { position: fixed; top: 70px; right: 12px; padding: 0.25em 0.5em; background: var(--teal); color: #fff; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="badge">Design 4 — Glassmorphism</div>
+
+<nav>
+  <div class="nav-logo">まど研究室</div>
+  <ul class="nav-links">
+    <li><a href="#">Research</a></li>
+    <li><a href="#">Members</a></li>
+    <li><a href="#">Publications</a></li>
+    <li><a href="#">Access</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">サンプル大学 理学部物理学科</div>
+      <h1>素粒子実験で<br><span>宇宙の謎</span>を解く</h1>
+      <p class="hero-sub">ニュートリノの精密測定と暗黒物質の直接探索を通じ、宇宙誕生の謎に挑み続けます。</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-solid">研究内容を見る</a>
+        <a href="#" class="btn-glass">メンバー紹介</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <p class="hero-card-title">Lab Overview</p>
+      <div class="metric-item"><span class="metric-label">研究テーマ</span><span class="metric-val">3 <small>themes</small></span></div>
+      <div class="metric-item"><span class="metric-label">メンバー数</span><span class="metric-val">12 <small>members</small></span></div>
+      <div class="metric-item"><span class="metric-label">論文数</span><span class="metric-val">48+ <small>papers</small></span></div>
+      <div class="metric-item"><span class="metric-label">参加実験</span><span class="metric-val">3 <small>experiments</small></span></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <section id="about">
+    <span class="section-pill">About</span>
+    <h2 class="section-title">研究室について</h2>
+    <div class="about-card">
+      <p class="about-text">大型加速器実験や地下実験施設において、ニュートリノの性質の精密測定と暗黒物質の直接探索に取り組んでいます。最先端の検出器技術の開発からビッグデータ解析まで、学生・大学院生が一体となって基礎科学の最前線に挑んでいます。</p>
+    </div>
+  </section>
+
+  <section id="research">
+    <span class="section-pill">Research</span>
+    <h2 class="section-title">研究テーマ</h2>
+    <div class="card-grid">
+      <article class="card">
+        <div class="card-img"><span>画像</span></div>
+        <div class="card-body">
+          <h3>素粒子検出器の開発</h3>
+          <p>高感度シリコン検出器を用いた荷電粒子飛跡の精密計測技術の研究開発。</p>
+          <a class="card-link" href="#">詳細を見る →</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-img"><span>画像</span></div>
+        <div class="card-body">
+          <h3>高エネルギー実験データ解析</h3>
+          <p>機械学習を活用した信号・背景事象の識別と統計解析手法の開発。</p>
+          <a class="card-link" href="#">詳細を見る →</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-img"><span>画像</span></div>
+        <div class="card-body">
+          <h3>ニュートリノ振動精密測定</h3>
+          <p>長基線ニュートリノ実験でCP非保存の探索に取り組む。</p>
+          <a class="card-link" href="#">詳細を見る →</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="news">
+    <span class="section-pill">News</span>
+    <h2 class="section-title">お知らせ</h2>
+    <div class="news-wrap">
+      <div class="news-item"><span class="news-date">2026.01.15</span><a class="news-title" href="#">国際学会 ICHEP 2026 で招待講演を行いました</a></div>
+      <div class="news-item"><span class="news-date">2025.12.01</span><a class="news-title" href="#">Physical Review Letters に論文が掲載されました</a></div>
+      <div class="news-item"><span class="news-date">2025.11.10</span><a class="news-title" href="#">大学院生募集のお知らせ（2026年度）</a></div>
+    </div>
+    <a class="more" href="#">ニュース一覧 →</a>
+  </section>
+</div>
+
+<footer>© 2026 まど研究室 / サンプル大学 理学部物理学科</footer>
+</body>
+</html>
