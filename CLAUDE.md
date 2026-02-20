@@ -30,7 +30,10 @@
 
 ## 開発ワークフロー
 
-タスクを実装したら、必ず以下の手順を完了させること（ユーザーへの確認不要）：
+**作業開始前:**
+`git pull origin main` で main を最新化してからブランチを切ること（ユーザーへの確認不要）。
+
+**作業完了後:**（ユーザーへの確認不要）
 
 1. `git add` → `git commit` → `git push origin <branch>`
 2. `gh pr create --head <branch> --base main` で PR を作成
