@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design 3 — Split Hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue: #0055A4;
+  --blue-dark: #003870;
+  --blue-mid: #1a6cc4;
+  --blue-light: #e8f2ff;
+  --gold: #c49a00;
+  --neutral-100: #f7f7f7;
+  --neutral-200: #e8e8e8;
+  --neutral-500: #6b6b6b;
+  --neutral-700: #3a3a3a;
+  --neutral-900: #121212;
+}
+body { font-family: "Inter","Noto Sans JP",sans-serif; color: var(--neutral-900); background: #fff; line-height: 1.7; }
+
+/* ナビ */
+nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); border-bottom: 1px solid var(--neutral-200); padding: 0 2.5rem; height: 62px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-size: 1.05rem; font-weight: 700; color: var(--blue-dark); }
+.nav-logo small { display: block; font-size: 0.65rem; font-weight: 400; color: var(--neutral-500); letter-spacing: 0.05em; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-size: 0.875rem; text-decoration: none; color: var(--neutral-700); }
+.nav-links a:hover { color: var(--blue); }
+
+/* スプリットヒーロー */
+.hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 88vh; }
+.hero-left { background: var(--blue-dark); color: #fff; display: flex; flex-direction: column; justify-content: center; padding: 6rem 4rem; position: relative; }
+.hero-left::after { content: ''; position: absolute; right: -1px; top: 0; bottom: 0; width: 60px; background: var(--blue-dark); clip-path: polygon(0 0, 0% 100%, 100% 50%); z-index: 2; }
+.hero-univ { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 2.5rem; font-weight: 600; }
+.hero-left h1 { font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 700; line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+.hero-left h1 em { font-style: normal; color: #7ab8ff; }
+.hero-left p { font-size: 0.9375rem; color: rgba(255,255,255,0.7); max-width: 420px; margin-bottom: 3rem; line-height: 1.8; }
+.hero-stats { display: flex; gap: 2.5rem; }
+.stat-item { text-align: center; }
+.stat-num { font-size: 1.75rem; font-weight: 700; color: #7ab8ff; display: block; }
+.stat-label { font-size: 0.7rem; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; }
+.hero-right { background: var(--neutral-100); display: flex; align-items: center; justify-content: center; padding: 4rem; }
+.hero-right-inner { text-align: center; }
+.hero-img-placeholder { width: 100%; aspect-ratio: 4/3; background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.3); font-size: 0.9rem; }
+
+/* コンテンツ */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 2.5rem; }
+
+/* セクション */
+section { padding: 5rem 0; }
+.section-inner { display: grid; grid-template-columns: 220px 1fr; gap: 4rem; align-items: start; }
+.section-aside {}
+.section-tag { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); display: block; margin-bottom: 0.5rem; }
+.section-aside h2 { font-size: 1.5rem; font-weight: 700; color: var(--neutral-900); line-height: 1.3; letter-spacing: -0.02em; }
+.section-aside h2::after { content: ''; display: block; width: 36px; height: 3px; background: var(--gold); margin-top: 1rem; }
+.divider { border: none; border-top: 1px solid var(--neutral-200); margin: 0; }
+
+/* About */
+.about-text { font-size: 1.0625rem; line-height: 1.95; color: var(--neutral-700); }
+
+/* Research */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+.card { border-radius: 8px; overflow: hidden; border: 1px solid var(--neutral-200); background: #fff; transition: box-shadow 0.2s; }
+.card:hover { box-shadow: 0 6px 24px rgba(0,55,112,0.1); }
+.card-img { height: 160px; background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%); display: flex; align-items: center; justify-content: center; }
+.card-img span { color: rgba(255,255,255,0.25); font-size: 0.8rem; }
+.card-body { padding: 1.25rem 1.5rem; }
+.card-body h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--neutral-900); }
+.card-body p { font-size: 0.875rem; color: var(--neutral-500); line-height: 1.7; }
+.card-link { font-size: 0.8rem; color: var(--blue); font-weight: 600; text-decoration: none; margin-top: 1rem; display: inline-block; }
+
+/* News */
+.news-list { list-style: none; }
+.news-item { display: flex; gap: 1rem; align-items: flex-start; padding: 0.9rem 0; border-bottom: 1px solid var(--neutral-200); }
+.news-date { font-size: 0.75rem; color: var(--neutral-500); white-space: nowrap; flex-shrink: 0; padding-top: 0.15rem; }
+.news-title { font-size: 0.9rem; text-decoration: none; color: var(--neutral-900); }
+.news-title:hover { color: var(--blue); }
+.more { font-size: 0.85rem; font-weight: 600; color: var(--blue); text-decoration: none; display: inline-block; margin-top: 1.25rem; }
+
+footer { background: var(--blue-dark); color: rgba(255,255,255,0.4); padding: 2rem; text-align: center; font-size: 0.8rem; }
+.badge { position: fixed; top: 70px; right: 12px; padding: 0.25em 0.5em; background: var(--gold); color: #fff; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="badge">Design 3 — Split Hero</div>
+
+<nav>
+  <div class="nav-logo">まど研究室 <small>サンプル大学 理学部物理学科</small></div>
+  <ul class="nav-links">
+    <li><a href="#">Research</a></li>
+    <li><a href="#">Members</a></li>
+    <li><a href="#">Publications</a></li>
+    <li><a href="#">Access</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <p class="hero-univ">Mado Laboratory — Particle Physics</p>
+    <h1>素粒子実験で<br><em>宇宙の謎</em>に<br>迫る</h1>
+    <p>ニュートリノの精密測定と暗黒物質の探索を通じ、宇宙誕生の謎に挑み続けます。</p>
+    <div class="hero-stats">
+      <div class="stat-item"><span class="stat-num">12</span><span class="stat-label">メンバー</span></div>
+      <div class="stat-item"><span class="stat-num">3</span><span class="stat-label">研究テーマ</span></div>
+      <div class="stat-item"><span class="stat-num">48+</span><span class="stat-label">論文</span></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-placeholder">[ hero image ]</div>
+  </div>
+</div>
+
+<div class="container">
+  <section id="about">
+    <div class="section-inner">
+      <aside class="section-aside">
+        <span class="section-tag">About</span>
+        <h2>研究室について</h2>
+      </aside>
+      <div>
+        <p class="about-text">大型加速器実験や地下実験施設において、ニュートリノの性質の精密測定と暗黒物質の直接探索に取り組んでいます。最先端の検出器技術の開発からビッグデータ解析まで、学生・大学院生が一体となって基礎科学の最前線に挑んでいます。</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section id="research">
+    <div class="section-inner">
+      <aside class="section-aside">
+        <span class="section-tag">Research</span>
+        <h2>研究テーマ</h2>
+      </aside>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-img"><span>画像</span></div>
+          <div class="card-body">
+            <h3>素粒子検出器の開発</h3>
+            <p>高感度シリコン検出器を用いた精密計測技術の研究開発。</p>
+            <a class="card-link" href="#">詳細を見る →</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-img"><span>画像</span></div>
+          <div class="card-body">
+            <h3>高エネルギー実験データ解析</h3>
+            <p>機械学習を活用した統計解析手法の開発。</p>
+            <a class="card-link" href="#">詳細を見る →</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-img"><span>画像</span></div>
+          <div class="card-body">
+            <h3>ニュートリノ振動精密測定</h3>
+            <p>長基線実験でCP非保存の探索に取り組む。</p>
+            <a class="card-link" href="#">詳細を見る →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section id="news">
+    <div class="section-inner">
+      <aside class="section-aside">
+        <span class="section-tag">News</span>
+        <h2>お知らせ</h2>
+      </aside>
+      <div>
+        <ul class="news-list">
+          <li class="news-item"><span class="news-date">2026.01.15</span><a class="news-title" href="#">国際学会 ICHEP 2026 で招待講演を行いました</a></li>
+          <li class="news-item"><span class="news-date">2025.12.01</span><a class="news-title" href="#">Physical Review Letters に論文が掲載されました</a></li>
+          <li class="news-item"><span class="news-date">2025.11.10</span><a class="news-title" href="#">大学院生募集のお知らせ（2026年度）</a></li>
+        </ul>
+        <a class="more" href="#">ニュース一覧 →</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>© 2026 まど研究室 / サンプル大学 理学部物理学科</footer>
+</body>
+</html>
