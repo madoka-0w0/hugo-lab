@@ -327,9 +327,9 @@ body:not(.page-home) #main-content {
 .lab-news-list { max-width: 720px; }
 .lab-news-item {
   display: grid;
-  grid-template-columns: 8rem 1fr;
-  gap: 1.25rem;
-  align-items: baseline;
+  grid-template-columns: 8rem 5.5rem 1fr;
+  column-gap: 0.75rem;
+  align-items: center;
   padding: 0.9rem 0;
   border-bottom: 1px solid var(--lab-neutral-200);
 }
@@ -341,12 +341,16 @@ body:not(.page-home) #main-content {
   letter-spacing: 0.04em;
   white-space: nowrap;
 }
+.lab-news-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
 .lab-news-title {
   font-size: 0.9rem;
   color: var(--lab-neutral-900);
   text-decoration: none;
   line-height: 1.55;
-  display: block;
   font-weight: 400;
 }
 .lab-news-title:hover { color: var(--lab-blue); }
@@ -495,9 +499,9 @@ body:not(.page-home) #main-content {
 .news-archive-list { margin-bottom: 1.5rem; }
 .news-archive-item {
   display: grid;
-  grid-template-columns: 5rem 1fr;
-  gap: 1.5rem;
-  align-items: baseline;
+  grid-template-columns: 5.5rem 5.5rem 1fr;
+  column-gap: 0.75rem;
+  align-items: center;
   padding: 0.9rem 0;
   border-bottom: 1px solid var(--lab-neutral-200);
 }
@@ -508,6 +512,11 @@ body:not(.page-home) #main-content {
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.04em;
   white-space: nowrap;
+}
+.news-archive-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
 }
 .news-archive-title {
   font-size: 0.9375rem;
@@ -747,6 +756,53 @@ body:not(.page-home) h1 {
   .faculty-card { flex-direction: column; align-items: center; text-align: center; }
   .faculty-email { text-align: left; }
 }
+
+/* ===== News 個別記事 ===== */
+.news-single-meta {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--lab-neutral-600);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+/* --- News タグ ---
+   背景・枠は全カテゴリー共通（ニュートラル）、テキスト色のみで区別する。
+   ⚠️ 新しいタグを追加する場合は archetypes/news.md のコメントも更新すること。 */
+.news-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.15rem 0.55rem;
+  border-radius: 3px;
+  white-space: nowrap;
+  letter-spacing: 0.03em;
+  /* 共通: 背景・枠 */
+  background: rgba(90, 88, 82, 0.07);
+  border: 1px solid rgba(90, 88, 82, 0.18);
+  /* デフォルト文字色（未定義タグ用） */
+  color: var(--lab-neutral-600);
+}
+
+/* テキスト色のみ変化（背景・枠は上書きしない） */
+.news-tag[data-tag="論文掲載"], .news-tag[data-tag="Paper"]       { color: #004a8f; }
+.news-tag[data-tag="受賞"],     .news-tag[data-tag="Award"]        { color: #7a5200; }
+.news-tag[data-tag="学会発表"], .news-tag[data-tag="Conference"]   { color: #006868; }
+.news-tag[data-tag="メンバー"], .news-tag[data-tag="Member"]       { color: #1a6b3b; }
+/* お知らせ / Announcement はデフォルト色のため追加不要 */
+.news-back-link {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--lab-neutral-200);
+}
+.news-back-link a {
+  color: var(--lab-blue);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+.news-back-link a:hover { text-decoration: underline; }
 
 /* ===== Access ページ ===== */
 .access-grid {

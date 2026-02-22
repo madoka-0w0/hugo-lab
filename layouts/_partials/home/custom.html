@@ -41,6 +41,9 @@
       {{ range $news }}
       <div class="lab-news-item">
         <span class="lab-news-date">{{ .Date.Format "2006.01.02" }}</span>
+        <span class="lab-news-tags">
+          {{ range .Params.tags }}<span class="news-tag" data-tag="{{ . }}">{{ . }}</span>{{ end }}
+        </span>
         <a class="lab-news-title" href="{{ .Permalink }}">{{ .Title }}</a>
       </div>
       {{ end }}
