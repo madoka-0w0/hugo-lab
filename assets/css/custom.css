@@ -368,69 +368,6 @@ body:not(.page-home) #main-content {
   line-height: 1.8;
 }
 
-/* ===== インナーページ共通ヘッダー ===== */
-.inner-page-header {
-  padding: 1.75rem 0 2.5rem;
-  border-bottom: 2px solid var(--lab-neutral-200);
-  margin-bottom: 2.5rem;
-}
-.inner-page-title {
-  font-family: "Playfair Display", "Noto Serif JP", serif !important;
-  font-size: clamp(2rem, 4vw, 2.75rem) !important;
-  font-weight: 800 !important;
-  line-height: 1.15 !important;
-  letter-spacing: -0.02em !important;
-  color: var(--lab-neutral-900) !important;
-  border: none !important;
-  padding: 0 !important;
-  margin: 0.5rem 0 0 !important;
-}
-.inner-page-desc {
-  font-size: 0.9375rem;
-  color: var(--lab-neutral-600);
-  line-height: 1.85;
-  margin: 0.75rem 0 0;
-  max-width: 720px;
-}
-.inner-page-intro {
-  max-width: 720px;
-  margin-top: 1rem;
-}
-.inner-page-intro p {
-  font-size: 0.9375rem;
-  color: var(--lab-neutral-600);
-  line-height: 1.9;
-  margin: 0;
-}
-
-/* ===== News アーカイブ ===== */
-.news-archive { margin-top: 0; }
-.news-archive-list { margin-bottom: 1.5rem; }
-.news-archive-item {
-  display: grid;
-  grid-template-columns: 5rem 1fr;
-  gap: 1.5rem;
-  align-items: baseline;
-  padding: 0.9rem 0;
-  border-bottom: 1px solid var(--lab-neutral-200);
-}
-.news-archive-item:last-child { border-bottom: none; }
-.news-archive-date {
-  font-size: 0.72rem;
-  color: var(--lab-neutral-400);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-}
-.news-archive-title {
-  font-size: 0.9375rem;
-  color: var(--lab-neutral-900);
-  text-decoration: none;
-  line-height: 1.55;
-  font-weight: 400;
-}
-.news-archive-title:hover { color: var(--lab-blue); }
-
 /* ===== インナーページ共通 ===== */
 /* セクション見出し */
 body:not(.page-home) .members-section-title,

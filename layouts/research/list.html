@@ -2,22 +2,18 @@
 {{ if .Pages }}
 
 {{/* ===== Research 一覧ページ ===== */}}
-<div class="inner-page-header">
-  <span class="rd-kicker">Laboratory Research</span>
-  <h1 class="inner-page-title">{{ .Title }}</h1>
-  {{ with .Content }}
-  <div class="inner-page-intro">{{ . }}</div>
-  {{ end }}
-</div>
+<header class="max-w-prose">
+  <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">{{ .Title }}</h1>
+</header>
 
-<div class="lab-section-rule">
-  <div class="lab-rule-thick"></div>
-  <span class="lab-rule-label">Research Themes</span>
-  <div class="lab-rule-thick"></div>
-</div>
+{{ if .Content }}
+<section class="prose mt-4 dark:prose-invert max-w-prose">
+  {{ .Content | emojify }}
+</section>
+{{ end }}
 
 {{ $themes := .Pages }}
-<div class="card-grid">
+<div class="card-grid mt-8">
   {{ range $themes }}
     {{- $page := . }}
     {{- $images := .Resources.ByType "image" }}
