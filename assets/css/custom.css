@@ -725,9 +725,15 @@ body:not(.page-home) h1 {
   .lab-nav-hamburger { display: flex !important; }
 }
 
-/* ナビ: 769px 以上ではモバイルメニューを完全非表示 */
+/* ナビ: 769px 以上ではモバイル専用要素を非表示 */
 @media (min-width: 769px) {
   .lab-nav-mobile { display: none; }
+  .lab-nav-tools  { display: none; }  /* 検索はデスクトップ用 nav-links 内に表示 */
+}
+
+/* 検索モーダル: ナビ(z-100)より前面に出す */
+#search-wrapper {
+  z-index: 200 !important;
 }
 
 /* インナーページ: 小画面のパディング縮小 */
