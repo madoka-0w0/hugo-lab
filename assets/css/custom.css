@@ -40,8 +40,9 @@ body.lab-body {
 /* 非ホームページの #main-content に padding を付与 */
 body:not(.page-home) #main-content {
   max-width: 1060px;
+  width: 100%;        /* flex child が margin: auto でコンテンツ幅に縮むのを防ぐ */
   margin: 0 auto;
-  padding: 2.5rem 2.5rem;
+  padding: 2.5rem;
 }
 
 /* ===== ナビ ===== */
