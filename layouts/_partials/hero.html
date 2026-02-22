@@ -1,28 +1,62 @@
-{{/* hero.html
-     トップページ専用のヒーローセクション。
-     home/custom.html から呼び出される。
-     画像は static/images/hero/hero.jpg に配置する（後日差し替え）。
-*/}}
-<section class="hero-section">
-  <img
-    src="{{ relURL "images/hero/hero.jpg" }}"
-    alt="{{ .Site.Title }}"
-    loading="eager"
-  >
-  <div class="hero-overlay">
-    <h1>
+{{/* hero.html — スライドショーヒーロー（Design 12）*/}}
+<div class="lab-hero">
+  <div class="lab-hero-slides">
+    <div class="lab-hero-slide lab-slide-1 is-active"></div>
+    <div class="lab-hero-slide lab-slide-2"></div>
+    <div class="lab-hero-slide lab-slide-3"></div>
+  </div>
+  <div class="lab-hero-grid"></div>
+  <div class="lab-hero-inner">
+    <span class="lab-hero-tag">{{ .Site.Params.description | default .Site.Title }}</span>
+    <h1 class="lab-hero-h1">
       {{- if eq .Site.Language.Lang "en" -}}
-        Mado Laboratory
+        Exploring<span>the Universe</span>
       {{- else -}}
-        まど研究室
+        素粒子で<span>宇宙を解く</span>
       {{- end -}}
     </h1>
-    <p>
+    <p class="lab-hero-sub">
       {{- if eq .Site.Language.Lang "en" -}}
-        Exploring the Fundamental Laws of the Universe through Particle Physics Experiments
+        Exploring the fundamental laws of the universe through neutrino precision measurements and dark matter direct searches.
       {{- else -}}
-        素粒子実験で宇宙の基本法則を探る
+        ニュートリノの精密測定と暗黒物質の直接探索を通じ、宇宙誕生の謎に挑む素粒子物理学実験研究室。
       {{- end -}}
     </p>
+    <div class="lab-hero-btns">
+      <a href="{{ relURL "research/" }}" class="lab-btn-primary">
+        {{- if eq .Site.Language.Lang "en" -}}Research{{- else -}}研究内容を見る{{- end -}}
+      </a>
+      <a href="{{ relURL "members/" }}" class="lab-btn-outline">
+        {{- if eq .Site.Language.Lang "en" -}}Members{{- else -}}メンバー紹介{{- end -}}
+      </a>
+    </div>
+    <div class="lab-hero-dots">
+      <button class="lab-hero-dot is-active" aria-label="スライド 1"></button>
+      <button class="lab-hero-dot" aria-label="スライド 2"></button>
+      <button class="lab-hero-dot" aria-label="スライド 3"></button>
+    </div>
   </div>
-</section>
+</div>
+<script>
+(function () {
+  var slides = document.querySelectorAll('.lab-hero-slide');
+  var dots   = document.querySelectorAll('.lab-hero-dot');
+  var current = 0;
+  var timer;
+  function goTo(n) {
+    slides[current].classList.remove('is-active');
+    dots[current].classList.remove('is-active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('is-active');
+    dots[current].classList.add('is-active');
+  }
+  function startTimer() {
+    clearInterval(timer);
+    timer = setInterval(function () { goTo(current + 1); }, 5000);
+  }
+  dots.forEach(function (dot, i) {
+    dot.addEventListener('click', function () { goTo(i); startTimer(); });
+  });
+  startTimer();
+})();
+</script>

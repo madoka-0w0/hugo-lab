@@ -1,0 +1,5 @@
+{{/* footer.html — Design 12 フッター */}}
+<footer class="lab-footer">
+  © {{ now.Year }} {{ .Site.Title }}
+  {{- with .Site.Params.organization }} / {{ . }}{{ end }}
+</footer>

@@ -1,310 +1,491 @@
 /* =====================================================
-   custom.css  — プロジェクト固有スタイル
-   Congo テーマのスタイルをピンポイントで上書きする。
-   テーマファイル（themes/congo/）は直接編集しない。
+   custom.css — Design 12 スタイル
    ===================================================== */
 
-/* --- フォント設定 ---
-   extend-head.html で Google Fonts を読み込んだ後に適用する。
-   日本語: Noto Sans JP / 欧文: Inter */
-body,
-.font-sans {
-  font-family: "Inter", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
+/* ===== デザイントークン ===== */
+:root {
+  --lab-blue:        #0055A4;
+  --lab-blue-dark:   #003d7a;
+  --lab-accent:      #00a3e0;
+  --lab-red:         #c41e3a;
+  --lab-cream:       #fffdf8;
+  --lab-neutral-100: #f3f1eb;
+  --lab-neutral-200: #e5e3dc;
+  --lab-neutral-400: #aaa89e;
+  --lab-neutral-600: #5a5852;
+  --lab-neutral-900: #1a1916;
 }
 
-/* --- ヒーローセクション --- */
-.hero-section {
-  position: relative;
-  width: 100%;
-  min-height: 60vh;
+/* ===== ベースリセット ===== */
+body.lab-body {
+  font-family: "Inter", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
+  background-color: var(--lab-cream);
+  color: var(--lab-neutral-900);
+  line-height: 1.7;
+  max-width: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin: 0 !important;
+  min-height: 100vh;
+}
+
+/* ===== コンテナ ===== */
+.lab-container {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+/* ===== インナーページコンテナ ===== */
+/* 非ホームページの #main-content に padding を付与 */
+body:not(.page-home) #main-content {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem;
+}
+
+/* ===== ナビ ===== */
+.lab-nav {
+  background: var(--lab-blue-dark);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.lab-nav-inner {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  height: 58px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background-color: rgb(var(--color-primary-900));
+  justify-content: space-between;
 }
-
-.hero-section img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.45;
-}
-
-.hero-overlay {
-  position: relative;
-  z-index: 10;
-  text-align: center;
+.lab-nav-logo {
+  font-size: 1rem;
+  font-weight: 700;
   color: #fff;
-  padding: 2rem 1.5rem;
+  text-decoration: none;
+  letter-spacing: -0.01em;
 }
+.lab-nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.lab-nav-links a {
+  font-size: 0.78rem;
+  text-decoration: none;
+  color: rgba(255,255,255,0.72);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: color 0.15s;
+}
+.lab-nav-links a:hover { color: #fff; }
 
-.hero-overlay h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+/* ===== ヒーロー（スライドショー）===== */
+.lab-hero {
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  padding: 7rem 2.5rem 5rem;
+}
+.lab-hero-slides { position: absolute; inset: 0; }
+.lab-hero-slide {
+  position: absolute; inset: 0;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+.lab-hero-slide.is-active { opacity: 1; }
+.lab-slide-1 { background: linear-gradient(135deg, #002a5e 0%, #003d7a 50%, #004f96 100%); }
+.lab-slide-2 { background: linear-gradient(135deg, #003355 0%, #005580 50%, #007ba0 100%); }
+.lab-slide-3 { background: linear-gradient(135deg, #0a1e3d 0%, #002a4a 40%, #003d6a 100%); }
+.lab-hero-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 80px),
+    repeating-linear-gradient(0deg,  rgba(255,255,255,0.025) 0, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 80px);
+}
+.lab-hero-inner {
+  max-width: 1060px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.lab-hero-tag {
+  display: inline-block;
+  padding: 0.3em 0.9em;
+  background: var(--lab-accent);
+  color: #fff;
+  font-size: 0.68rem;
   font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 0.75rem;
+  letter-spacing: 0.12em;
+  border-radius: 2px;
+  margin-bottom: 1.75rem;
 }
-
-.hero-overlay p {
-  font-size: clamp(1rem, 2.5vw, 1.375rem);
-  font-weight: 400;
-  opacity: 0.9;
+.lab-hero-h1 {
+  font-family: "Playfair Display", "Noto Serif JP", serif !important;
+  font-size: clamp(2.8rem, 7vw, 5rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.02em !important;
+  margin-bottom: 1.5rem !important;
+  color: #fff !important;
+  border: none !important;
+  padding: 0 !important;
 }
-
-/* --- セクション共通 --- */
-.section-home {
-  padding: 4rem 0;
+.lab-hero-h1 span {
+  color: var(--lab-accent);
+  display: block;
 }
-
-.section-home h2 {
-  font-size: 1.75rem;
+.lab-hero-sub {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.68);
+  max-width: 520px;
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+  font-weight: 300;
+}
+.lab-hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.lab-btn-primary {
+  padding: 0.75rem 2rem;
+  background: var(--lab-accent);
+  color: #fff;
+  font-size: 0.875rem;
   font-weight: 700;
-  color: rgb(var(--color-primary-700));
+  text-decoration: none;
+  border-radius: 3px;
+  transition: opacity 0.15s;
+}
+.lab-btn-primary:hover { opacity: 0.88; color: #fff; }
+.lab-btn-outline {
+  padding: 0.75rem 2rem;
+  border: 1.5px solid rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.82);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: border-color 0.15s, color 0.15s;
+}
+.lab-btn-outline:hover { border-color: rgba(255,255,255,0.7); color: #fff; }
+.lab-hero-dots { display: flex; gap: 0.5rem; margin-top: 2.75rem; }
+.lab-hero-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  border: none; cursor: pointer; padding: 0;
+  transition: background 0.3s, transform 0.3s;
+}
+.lab-hero-dot.is-active { background: var(--lab-accent); transform: scale(1.35); }
+
+/* ===== セクションルーラー ===== */
+.lab-section-rule {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.25rem;
+}
+.lab-rule-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--lab-neutral-900);
+  white-space: nowrap;
+}
+.lab-rule-thick {
+  flex: 1;
+  border-top: 2px solid var(--lab-neutral-900);
+  border-bottom: 1px solid var(--lab-neutral-200);
+  padding-top: 3px;
+}
+
+/* ===== About ===== */
+.lab-about { padding: 2.5rem 0; }
+.lab-kicker {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--lab-red);
+  margin-bottom: 0.6rem;
+  display: block;
+}
+.lab-about-heading {
+  font-family: "Playfair Display", "Noto Serif JP", serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--lab-neutral-900);
+  line-height: 1.25;
   margin-bottom: 1.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 3px solid rgb(var(--color-primary-600));
+  letter-spacing: -0.02em;
+  border: none !important;
+  padding: 0 !important;
+}
+.lab-about-body { max-width: 720px; }
+.lab-about-body p,
+.lab-about-body > p {
+  font-size: 0.9375rem;
+  color: var(--lab-neutral-600);
+  line-height: 1.95;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+.lab-about-body p:last-child { margin-bottom: 0; }
+
+/* ===== News ===== */
+.lab-news { padding: 2.5rem 0; }
+.lab-news-list { max-width: 720px; }
+.lab-news-item {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 1.25rem;
+  align-items: baseline;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--lab-neutral-200);
+}
+.lab-news-item:last-child { border-bottom: none; }
+.lab-news-date {
+  font-size: 0.72rem;
+  color: var(--lab-neutral-400);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.lab-news-title {
+  font-size: 0.9rem;
+  color: var(--lab-neutral-900);
+  text-decoration: none;
+  line-height: 1.55;
+  display: block;
+  font-weight: 400;
+}
+.lab-news-title:hover { color: var(--lab-blue); }
+.lab-more {
+  display: inline-block;
+  margin-top: 1.25rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--lab-blue);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+.lab-more:hover { text-decoration: underline; }
+
+/* ===== Research カードグリッド ===== */
+.lab-research { padding: 2.5rem 0; }
+.lab-card-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+.lab-card-article { display: flex; flex-direction: column; }
+.lab-card-img {
+  width: 100%;
+  height: 170px;
+  border-radius: 3px;
+  margin-bottom: 1.1rem;
+  object-fit: cover;
+}
+.lab-card-img-placeholder {
+  background: linear-gradient(135deg, var(--lab-blue-dark) 0%, var(--lab-blue) 60%, #0077cc 100%);
+}
+.lab-card-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lab-red);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+.lab-card-article h3 {
+  font-family: "Playfair Display", "Noto Serif JP", serif;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--lab-neutral-900);
+  margin-bottom: 0.55rem;
+  border: none !important;
+  padding: 0 !important;
+}
+.lab-card-article h3 a {
+  color: var(--lab-neutral-900);
+  text-decoration: none;
+}
+.lab-card-article h3 a:hover { color: var(--lab-blue); }
+.lab-card-article > p {
+  font-size: 0.85rem;
+  color: var(--lab-neutral-600);
+  line-height: 1.75;
+  flex: 1;
+}
+.lab-card-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--lab-blue);
+  text-decoration: none;
+}
+.lab-card-link:hover { text-decoration: underline; }
+
+/* ===== Publications（ホーム）===== */
+.lab-pubs { padding: 2.5rem 0; }
+.lab-pub-list { max-width: 760px; }
+.lab-pub-item {
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--lab-neutral-200);
+}
+.lab-pub-item:last-child { border-bottom: none; }
+.lab-pub-journal {
+  font-size: 0.7rem;
+  color: var(--lab-neutral-400);
+  letter-spacing: 0.04em;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.lab-pub-title {
+  font-size: 0.9rem;
+  color: var(--lab-neutral-900);
+  text-decoration: none;
+  line-height: 1.55;
+  display: block;
+  font-weight: 400;
+}
+.lab-pub-title:hover { color: var(--lab-blue); }
+
+/* ===== フッター ===== */
+.lab-footer {
+  border-top: 3px double var(--lab-neutral-200);
+  background: var(--lab-neutral-100);
+  padding: 2rem 2.5rem;
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--lab-neutral-400);
+  line-height: 1.8;
 }
 
-/* --- カードグリッド（Research Topics） --- */
+/* ===== インナーページ共通 ===== */
+/* セクション見出し */
+body:not(.page-home) .members-section-title,
+body:not(.page-home) .pub-year-heading {
+  font-family: "Playfair Display", "Noto Serif JP", serif;
+  color: var(--lab-neutral-900);
+  border-bottom-color: var(--lab-blue-dark);
+}
+/* h1 (Congo's article heading) */
+body:not(.page-home) h1 {
+  font-family: "Playfair Display", "Noto Serif JP", serif;
+}
+
+/* Members */
+.members-section { margin-top: 2.5rem; margin-bottom: 1.5rem; }
+.members-section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--lab-neutral-900);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--lab-blue-dark);
+}
+.faculty-card {
+  display: flex;
+  gap: 2rem;
+  padding: 1.5rem;
+  border: 1px solid var(--lab-neutral-200);
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+  background: #fff;
+}
+.faculty-photo {
+  width: 140px; height: 140px;
+  object-fit: cover; border-radius: 4px; flex-shrink: 0;
+}
+.faculty-info h3 {
+  font-size: 1.25rem; font-weight: 700;
+  color: var(--lab-neutral-900);
+  margin-top: 0; margin-bottom: 0.25rem;
+}
+.faculty-role { font-size: 0.9rem; color: var(--lab-neutral-600); margin: 0 0 0.5rem; }
+.faculty-email { margin: 0 0 0.5rem; }
+.faculty-email a { color: var(--lab-blue); text-decoration: none; }
+.faculty-email a:hover { text-decoration: underline; }
+.faculty-bio { margin-top: 0.75rem; color: var(--lab-neutral-600); line-height: 1.75; font-size: 0.9rem; }
+.members-group-title {
+  font-size: 1rem; font-weight: 600;
+  color: var(--lab-neutral-600);
+  margin-top: 1.5rem; margin-bottom: 0.5rem;
+}
+.members-table {
+  width: 100%; border-collapse: collapse;
+  margin-bottom: 1.5rem; display: table;
+}
+.members-table th {
+  text-align: left;
+  padding: 0.5rem 1rem;
+  background: #f0f5ff;
+  color: var(--lab-blue-dark);
+  font-weight: 600;
+  border-bottom: 2px solid var(--lab-blue);
+}
+.members-table td {
+  padding: 0.45rem 1rem;
+  border-bottom: 1px solid var(--lab-neutral-200);
+}
+.members-table tr:last-child td { border-bottom: none; }
+
+/* Publications (inner page) */
+.pub-year-heading {
+  font-size: 1.375rem; font-weight: 700;
+  color: var(--lab-neutral-900);
+  margin-top: 2.5rem; margin-bottom: 0.75rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid var(--lab-blue-dark);
+}
+.pub-list { list-style: none; padding: 0; margin: 0; }
+.pub-item { padding: 1rem 0; border-bottom: 1px solid var(--lab-neutral-200); }
+.pub-item:last-child { border-bottom: none; }
+.pub-authors { font-size: 0.875rem; color: var(--lab-neutral-600); margin: 0 0 0.2rem; }
+.pub-title { font-size: 0.95rem; font-weight: 500; margin: 0.2rem 0; }
+.pub-title a { color: var(--lab-blue-dark); text-decoration: none; }
+.pub-title a:hover { text-decoration: underline; }
+.pub-ref { font-size: 0.875rem; color: var(--lab-neutral-600); margin: 0.2rem 0 0; }
+.pub-doi { font-size: 0.82rem; font-weight: 500; color: var(--lab-blue); text-decoration: none; }
+.pub-doi:hover { text-decoration: underline; }
+
+/* Research list (inner page) */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
 }
-
 .card {
-  border: 1px solid rgb(var(--color-neutral-200));
-  border-radius: 0.75rem;
+  border: 1px solid var(--lab-neutral-200);
+  border-radius: 6px;
   overflow: hidden;
   transition: box-shadow 0.2s;
+  background: #fff;
 }
-
-.card:hover {
-  box-shadow: 0 4px 20px rgba(0, 85, 164, 0.15);
-}
-
-.card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.card-body {
-  padding: 1.25rem;
-}
-
+.card:hover { box-shadow: 0 4px 20px rgba(0,85,164,0.12); }
+.card img { width: 100%; height: 180px; object-fit: cover; display: block; }
+.card-body { padding: 1.25rem; }
 .card-body h3 {
-  font-size: 1.125rem;
-  font-weight: 700;
+  font-family: "Playfair Display", "Noto Serif JP", serif;
+  font-size: 1.0625rem; font-weight: 700;
   margin-bottom: 0.5rem;
-  color: rgb(var(--color-primary-700));
+  color: var(--lab-neutral-900);
+  border: none !important;
 }
-
-/* --- ニュースリスト（ホームページ） --- */
-.news-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1.25rem;
-}
-
-.news-list li {
-  display: flex;
-  gap: 1rem;
-  align-items: baseline;
-  padding: 0.6rem 0;
-  border-bottom: 1px solid rgb(var(--color-neutral-200));
-}
-
-.news-list time {
-  flex-shrink: 0;
-  font-size: 0.875rem;
-  color: rgb(var(--color-neutral-500));
-  font-variant-numeric: tabular-nums;
-}
-
-.more-link {
-  text-align: right;
-  font-size: 0.9rem;
-}
-
-/* --- Members ページ --- */
-.members-section {
-  margin-top: 3rem;
-  margin-bottom: 2rem;
-}
-
-.members-section-title {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: rgb(var(--color-primary-700));
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 3px solid rgb(var(--color-primary-600));
-}
-
-/* 教員カード */
-.faculty-card {
-  display: flex;
-  gap: 2rem;
-  padding: 1.5rem;
-  border: 1px solid rgb(var(--color-neutral-200));
-  border-radius: 0.75rem;
-  margin-bottom: 1.5rem;
-  align-items: flex-start;
-}
-
-.faculty-photo {
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 0.5rem;
-  flex-shrink: 0;
-}
-
-.faculty-info h3 {
-  font-size: 1.375rem;
-  font-weight: 700;
-  color: rgb(var(--color-primary-700));
-  margin-top: 0;
-  margin-bottom: 0.25rem;
-}
-
-.faculty-role {
-  font-size: 1rem;
-  color: rgb(var(--color-neutral-600));
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-
-.faculty-email {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-
-.faculty-email a {
-  color: rgb(var(--color-primary-600));
-  text-decoration: none;
-}
-
-.faculty-email a:hover {
-  text-decoration: underline;
-}
-
-.faculty-bio {
-  margin-top: 0.75rem;
-  color: rgb(var(--color-neutral-700));
-  line-height: 1.75;
-}
-
-/* 学生テーブル */
-.members-group-title {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: rgb(var(--color-neutral-700));
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
-}
-
-.members-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 1.5rem;
-  display: table; /* Congo の table { display: block } を上書き */
-}
-
-.members-table th {
-  text-align: left;
-  padding: 0.625rem 1rem;
-  background-color: rgb(var(--color-primary-50));
-  color: rgb(var(--color-primary-700));
-  font-weight: 600;
-  border-bottom: 2px solid rgb(var(--color-primary-200));
-}
-
-.members-table td {
-  padding: 0.5rem 1rem;
-  border-bottom: 1px solid rgb(var(--color-neutral-100));
-}
-
-.members-table tr:last-child td {
-  border-bottom: none;
-}
+.card-body h3 a { color: var(--lab-neutral-900); text-decoration: none; }
+.card-body h3 a:hover { color: var(--lab-blue); }
+.card-body p { font-size: 0.875rem; color: var(--lab-neutral-600); line-height: 1.7; }
 
 @media (max-width: 640px) {
-  .faculty-card {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .faculty-email {
-    text-align: left;
-  }
-}
-
-/* --- Publications ページ --- */
-.pub-year-heading {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: rgb(var(--color-primary-700));
-  margin-top: 2.5rem;
-  margin-bottom: 0.75rem;
-  padding-bottom: 0.25rem;
-  border-bottom: 3px solid rgb(var(--color-primary-600));
-}
-
-.pub-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.pub-item {
-  padding: 1rem 0;
-  border-bottom: 1px solid rgb(var(--color-neutral-200));
-}
-
-.pub-item:last-child {
-  border-bottom: none;
-}
-
-.pub-authors {
-  font-size: 0.9rem;
-  color: rgb(var(--color-neutral-600));
-  margin: 0 0 0.2rem;
-}
-
-.pub-title {
-  font-size: 1rem;
-  font-weight: 600;
-  margin: 0.2rem 0;
-}
-
-.pub-title a {
-  color: rgb(var(--color-primary-700));
-  text-decoration: none;
-}
-
-.pub-title a:hover {
-  text-decoration: underline;
-}
-
-.pub-ref {
-  font-size: 0.9rem;
-  color: rgb(var(--color-neutral-600));
-  margin: 0.2rem 0 0;
-}
-
-.pub-doi {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: rgb(var(--color-primary-600));
-  text-decoration: none;
-}
-
-.pub-doi:hover {
-  text-decoration: underline;
+  .lab-card-row { grid-template-columns: 1fr; }
+  .faculty-card { flex-direction: column; align-items: center; text-align: center; }
+  .faculty-email { text-align: left; }
 }

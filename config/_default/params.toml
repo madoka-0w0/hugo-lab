@@ -21,6 +21,8 @@ fingerprintAlgorithm = "sha256"
 # analytics.html partial で hugo.Environment == "production" のときのみ有効化。
 # ga4_id = "G-XXXXXXXXXX"
 
+organization = "サンプル大学 理学部物理学科"
+
 [header]
   # hamburger: モバイルでハンバーガーメニューに切り替わるレスポンシブヘッダー
   layout    = "hamburger"
