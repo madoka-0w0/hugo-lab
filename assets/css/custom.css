@@ -327,9 +327,9 @@ body:not(.page-home) #main-content {
 .lab-news-list { max-width: 720px; }
 .lab-news-item {
   display: grid;
-  grid-template-columns: 8rem 1fr;
-  gap: 1.25rem;
-  align-items: baseline;
+  grid-template-columns: 8rem 5.5rem 1fr;
+  column-gap: 0.75rem;
+  align-items: center;
   padding: 0.9rem 0;
   border-bottom: 1px solid var(--lab-neutral-200);
 }
@@ -341,18 +341,16 @@ body:not(.page-home) #main-content {
   letter-spacing: 0.04em;
   white-space: nowrap;
 }
-.lab-news-body {
+.lab-news-tags {
   display: flex;
-  align-items: baseline;
   flex-wrap: wrap;
-  gap: 0.3rem;
+  gap: 0.25rem;
 }
 .lab-news-title {
   font-size: 0.9rem;
   color: var(--lab-neutral-900);
   text-decoration: none;
   line-height: 1.55;
-  display: block;
   font-weight: 400;
 }
 .lab-news-title:hover { color: var(--lab-blue); }
@@ -501,9 +499,9 @@ body:not(.page-home) #main-content {
 .news-archive-list { margin-bottom: 1.5rem; }
 .news-archive-item {
   display: grid;
-  grid-template-columns: 5rem 1fr;
-  gap: 1.5rem;
-  align-items: baseline;
+  grid-template-columns: 5.5rem 5.5rem 1fr;
+  column-gap: 0.75rem;
+  align-items: center;
   padding: 0.9rem 0;
   border-bottom: 1px solid var(--lab-neutral-200);
 }
@@ -515,11 +513,10 @@ body:not(.page-home) #main-content {
   letter-spacing: 0.04em;
   white-space: nowrap;
 }
-.news-archive-body {
+.news-archive-tags {
   display: flex;
-  align-items: baseline;
   flex-wrap: wrap;
-  gap: 0.3rem;
+  gap: 0.25rem;
 }
 .news-archive-title {
   font-size: 0.9375rem;
@@ -770,14 +767,63 @@ body:not(.page-home) h1 {
   gap: 0.5rem;
   flex-wrap: wrap;
 }
+/* --- News タグ共通（デフォルト: ニュートラル） --- */
 .news-tag {
-  display: inline-block;
-  font-size: 0.72rem;
-  padding: 0.15rem 0.6rem;
-  border-radius: 9999px;
-  background: var(--lab-blue);
-  color: #fff;
-  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.15rem 0.55rem;
+  border-radius: 3px;
+  white-space: nowrap;
+  letter-spacing: 0.03em;
+  /* デフォルト色（カテゴリー未定義時） */
+  background: rgba(90, 88, 82, 0.08);
+  color: var(--lab-neutral-600);
+  border: 1px solid rgba(90, 88, 82, 0.2);
+}
+
+/* --- カテゴリー別色分け（data-tag 属性で指定） ---
+   すべて同じ「薄い背景 + 濃いテキスト + 細いボーダー」形式で統一感を保つ */
+
+/* 論文掲載 — ブルー（--lab-blue の系統） */
+.news-tag[data-tag="論文掲載"],
+.news-tag[data-tag="Paper"] {
+  background: rgba(0, 85, 164, 0.08);
+  color: #004a8f;
+  border-color: rgba(0, 85, 164, 0.25);
+}
+
+/* 受賞 — アンバー（金色系、権威・称賛） */
+.news-tag[data-tag="受賞"],
+.news-tag[data-tag="Award"] {
+  background: rgba(180, 120, 0, 0.08);
+  color: #7a5200;
+  border-color: rgba(180, 120, 0, 0.25);
+}
+
+/* 学会発表 — ティール（--lab-accent の系統） */
+.news-tag[data-tag="学会発表"],
+.news-tag[data-tag="Conference"] {
+  background: rgba(0, 140, 140, 0.08);
+  color: #006868;
+  border-color: rgba(0, 140, 140, 0.25);
+}
+
+/* メンバー — グリーン（人・チーム） */
+.news-tag[data-tag="メンバー"],
+.news-tag[data-tag="Member"] {
+  background: rgba(30, 130, 70, 0.08);
+  color: #1a6b3b;
+  border-color: rgba(30, 130, 70, 0.25);
+}
+
+/* お知らせ — ニュートラル（ベースと同じ、上書き不要だが明示） */
+.news-tag[data-tag="お知らせ"],
+.news-tag[data-tag="Announcement"] {
+  background: rgba(90, 88, 82, 0.08);
+  color: var(--lab-neutral-600);
+  border-color: rgba(90, 88, 82, 0.2);
 }
 .news-back-link {
   margin-top: 2.5rem;
