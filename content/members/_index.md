@@ -1,4 +1,4 @@
 ---
-title: "MEMBERS"
+title: "Members"
 description: "まど研究室のメンバー紹介。教員・大学院生・学部生が一丸となって素粒子実験研究に取り組んでいます。"
 ---

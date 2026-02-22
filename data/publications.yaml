@@ -1,10 +1,12 @@
 # Publications data — まど研究室
 # ※ すべて架空データ。著者・タイトル・DOI はいずれも実在しない。
 #   DOI プレフィックス 10.0000/ は未割り当て（実在する出版社に紐づかない）。
+#   著者名（山田・田中・鈴木 等）は日本の一般的な仮名。
+#   実験名 SAMPLE-EXP・検出器名 SAMPLE-DET はサンプルデータ識別用の架空名称。
 
 - year: 2025
   authors: "T. Yamada, K. Suzuki, H. Tanaka, Y. Sato et al. (SAMPLE-EXP Collaboration)"
-  title: "Precision measurement of Dummy neutrino mixing angle θ₁₃ using reactor antineutrinos at SAMPLE-EXP"
+  title: "Precision measurement of neutrino mixing angle θ₁₃ using reactor antineutrinos at SAMPLE-EXP [架空データ]"
   journal: "Physical Review Letters"
   volume: "134"
   pages: "071802"
@@ -12,7 +14,7 @@
 
 - year: 2024
   authors: "T. Yamada, H. Tanaka, M. Ito, R. Kato et al. (SAMPLE-EXP Collaboration)"
-  title: "Search for sterile Dummy neutrino oscillations with a near detector at SAMPLE-EXP"
+  title: "Search for sterile neutrino oscillations with the SAMPLE-DET near detector at SAMPLE-EXP [架空データ]"
   journal: "Physical Review D"
   volume: "110"
   pages: "052014"
@@ -20,15 +22,15 @@
 
 - year: 2024
   authors: "K. Suzuki, T. Yamada, N. Kobayashi"
-  title: "Dummy Development of a high-light-yield liquid scintillator detector for MeV-scale neutrino detection"
-  journal: "Dummy Nuclear Instruments and Methods in Physics Research A"
+  title: "Development of the SAMPLE-DET high-light-yield liquid scintillator module for MeV-scale neutrino detection [架空データ]"
+  journal: "Nuclear Instruments and Methods in Physics Research A"
   volume: "1058"
   pages: "168823"
   doi: "10.0000/j.nima.2024.168823"
 
 - year: 2023
   authors: "T. Yamada, Y. Sato, S. Watanabe, H. Tanaka et al. (SAMPLE-EXP Collaboration)"
-  title: "First observation of reactor Dummy neutrino disappearance at a baseline of 1.8 km"
+  title: "First observation of reactor neutrino disappearance at a 1.8 km baseline with SAMPLE-EXP [架空データ]"
   journal: "Journal of High Energy Physics"
   volume: "2023"
   pages: "089"
@@ -36,7 +38,7 @@
 
 - year: 2023
   authors: "M. Ito, T. Yamada, K. Suzuki"
-  title: "Convolutional Dummy neural network approach to energy reconstruction in a segmented scintillator detector"
+  title: "Convolutional neural network approach to energy reconstruction in the SAMPLE-DET segmented scintillator detector [架空データ]"
   journal: "Journal of Instrumentation"
   volume: "18"
   pages: "P04031"
@@ -44,7 +46,7 @@
 
 - year: 2022
   authors: "T. Yamada, K. Suzuki, R. Kato, N. Kobayashi et al. (SAMPLE-EXP Collaboration)"
-  title: "Measurement of the Dummy antineutrino energy spectrum above the inverse beta decay threshold"
+  title: "Measurement of the antineutrino energy spectrum above the inverse beta decay threshold at SAMPLE-EXP [架空データ]"
   journal: "Physical Review Letters"
   volume: "129"
   pages: "261803"
@@ -52,7 +54,7 @@
 
 - year: 2021
   authors: "K. Suzuki, T. Yamada, S. Watanabe, M. Ito"
-  title: "Calibration of the Dummy energy scale using spallation neutrons in a Gd-doped water Cherenkov detector"
+  title: "Energy scale calibration using spallation neutrons in the SAMPLE-DET Gd-doped water Cherenkov detector [架空データ]"
   journal: "Progress of Theoretical and Experimental Physics"
   volume: "2021"
   pages: "043H01"

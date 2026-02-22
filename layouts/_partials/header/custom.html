@@ -1,0 +1,80 @@
+{{/* header/custom.html — ダークネイビー固定ナビ（レスポンシブ対応） */}}
+<nav class="lab-nav" id="lab-nav">
+  <div class="lab-nav-inner">
+    <a class="lab-nav-logo" href="{{ .Site.Home.Permalink }}">{{ .Site.Title }}</a>
+
+    {{/* デスクトップ: 横並びリンク + 検索アイコン（末尾）*/}}
+    <ul class="lab-nav-links">
+      {{ range .Site.Menus.main }}
+        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+      {{ end }}
+      {{ if .Site.Params.enableSearch | default false }}
+      <li>
+        <button class="lab-nav-search-btn" id="search-button-desktop" aria-label="検索">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="15" height="15" fill="currentColor" aria-hidden="true">
+            <path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/>
+          </svg>
+        </button>
+      </li>
+      {{ end }}
+    </ul>
+
+    {{/* モバイル: 検索 + ハンバーガー */}}
+    <div class="lab-nav-tools">
+      {{ if .Site.Params.enableSearch | default false }}
+      <button class="lab-nav-search-btn" id="search-button-mobile" aria-label="検索">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="15" height="15" fill="currentColor" aria-hidden="true">
+          <path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/>
+        </svg>
+      </button>
+      {{ end }}
+      <button class="lab-nav-hamburger" id="lab-nav-toggle"
+        aria-label="メニュー" aria-expanded="false" aria-controls="lab-nav-mobile">
+        <span class="lab-hb-bar"></span>
+        <span class="lab-hb-bar"></span>
+        <span class="lab-hb-bar"></span>
+      </button>
+    </div>
+  </div>
+
+  {{/* モバイル: ドロップダウンメニュー */}}
+  <div class="lab-nav-mobile" id="lab-nav-mobile" aria-hidden="true">
+    <ul class="lab-nav-mobile-links">
+      {{ range .Site.Menus.main }}
+        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+</nav>
+
+<script>
+(function () {
+  var btn  = document.getElementById('lab-nav-toggle');
+  var menu = document.getElementById('lab-nav-mobile');
+  if (!btn || !menu) return;
+
+  function closeMenu() {
+    menu.classList.remove('is-open');
+    btn.classList.remove('is-open');
+    btn.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-hidden',  'true');
+  }
+
+  btn.addEventListener('click', function () {
+    var open = menu.classList.toggle('is-open');
+    btn.classList.toggle('is-open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menu.setAttribute('aria-hidden',  open ? 'false' : 'true');
+  });
+
+  // リンクをタップしたら閉じる
+  menu.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') { closeMenu(); }
+  });
+
+  // 検索ボタンを押したらモバイルメニューを閉じる（検索モーダルと重なるのを防ぐ）
+  document.querySelectorAll('[id^="search-button"]').forEach(function (sb) {
+    sb.addEventListener('click', closeMenu);
+  });
+}());
+</script>
