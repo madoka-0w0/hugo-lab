@@ -1,0 +1,53 @@
+{{/* header/hamburger.html — ダークネイビー固定ナビ（レスポンシブ対応） */}}
+<nav class="lab-nav" id="lab-nav">
+  <div class="lab-nav-inner">
+    <a class="lab-nav-logo" href="{{ .Site.Home.Permalink }}">{{ .Site.Title }}</a>
+
+    {{/* デスクトップ: 横並びリンク */}}
+    <ul class="lab-nav-links">
+      {{ range .Site.Menus.main }}
+        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+      {{ end }}
+    </ul>
+
+    {{/* モバイル: ハンバーガーボタン */}}
+    <button class="lab-nav-hamburger" id="lab-nav-toggle"
+      aria-label="メニュー" aria-expanded="false" aria-controls="lab-nav-mobile">
+      <span class="lab-hb-bar"></span>
+      <span class="lab-hb-bar"></span>
+      <span class="lab-hb-bar"></span>
+    </button>
+  </div>
+
+  {{/* モバイル: ドロップダウンメニュー */}}
+  <div class="lab-nav-mobile" id="lab-nav-mobile" aria-hidden="true">
+    <ul class="lab-nav-mobile-links">
+      {{ range .Site.Menus.main }}
+        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+</nav>
+
+<script>
+(function () {
+  var btn  = document.getElementById('lab-nav-toggle');
+  var menu = document.getElementById('lab-nav-mobile');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function () {
+    var open = menu.classList.toggle('is-open');
+    btn.classList.toggle('is-open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menu.setAttribute('aria-hidden',  open ? 'false' : 'true');
+  });
+  // リンクをタップしたら閉じる
+  menu.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') {
+      menu.classList.remove('is-open');
+      btn.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('aria-hidden',  'true');
+    }
+  });
+}());
+</script>
