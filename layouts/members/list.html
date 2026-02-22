@@ -14,9 +14,9 @@
   {{ $isEN := eq .Site.Language.Lang "en" }}
   {{ $m := .Site.Data.members }}
 
-  <header>
-    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">{{ .Title }}</h1>
-  </header>
+  <div class="inner-page-header">
+    <h1 class="inner-page-title">{{ .Title }}</h1>
+  </div>
 
   {{/* === 教員 / Faculty === */}}
   <section class="members-section" id="faculty">

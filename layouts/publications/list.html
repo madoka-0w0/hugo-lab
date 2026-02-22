@@ -4,12 +4,9 @@
      英語版は不要（論文はすでに英語）。
 */}}
 {{ define "main" }}
-  <header>
-    {{ if .Params.showBreadcrumbs | default (.Site.Params.list.showBreadcrumbs | default false) }}
-      {{ partial "breadcrumbs.html" . }}
-    {{ end }}
-    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">{{ .Title }}</h1>
-  </header>
+  <div class="inner-page-header">
+    <h1 class="inner-page-title">{{ .Title }}</h1>
+  </div>
 
   {{ with .Content }}
     <section class="prose mt-4 dark:prose-invert max-w-prose">
