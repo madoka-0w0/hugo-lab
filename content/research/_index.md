@@ -1,5 +1,5 @@
 ---
-title: "RESEARCH"
+title: "Research"
 description: "まど研究室では素粒子実験に関する2つの主要テーマを中心に研究を進めています。"
 ---
 
