@@ -747,3 +747,77 @@ body:not(.page-home) h1 {
   .faculty-card { flex-direction: column; align-items: center; text-align: center; }
   .faculty-email { text-align: left; }
 }
+
+/* ===== Access ページ ===== */
+.access-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+.access-card {
+  background: #fff;
+  border: 1px solid var(--lab-neutral-200);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.access-card:last-child { margin-bottom: 0; }
+.access-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--lab-blue);
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--lab-blue);
+}
+.access-dl {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: 0.5rem 1rem;
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.access-dl dt {
+  font-weight: 600;
+  color: var(--lab-neutral-600);
+  padding-top: 0.1rem;
+}
+.access-dl dd { margin: 0; }
+.access-dl a { color: var(--lab-blue); }
+.access-transport-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.access-transport-list li {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  font-size: 0.9rem;
+}
+.access-transport-icon { font-size: 1.1rem; flex-shrink: 0; }
+.access-map-col { position: sticky; top: 5rem; }
+.access-map-placeholder {
+  background: var(--lab-neutral-100);
+  border: 1px solid var(--lab-neutral-200);
+  border-radius: 8px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.access-map-label {
+  color: var(--lab-neutral-600);
+  font-size: 0.875rem;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .access-grid { grid-template-columns: 1fr; }
+  .access-map-col { position: static; }
+  .access-map-placeholder { height: 260px; }
+}
