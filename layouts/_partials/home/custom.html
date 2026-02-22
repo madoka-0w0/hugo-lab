@@ -109,9 +109,11 @@
       </div>
       {{ end }}
     </div>
-    <a class="lab-more" href="{{ relURL "publications/" }}">
-      {{- if eq .Site.Language.Lang "en" -}}All Publications →{{- else -}}論文一覧 →{{- end -}}
-    </a>
+    {{- if eq .Site.Language.Lang "en" -}}  
+    <a class="lab-more" href="{{ relURL "en/publications/" }}">All Publications →</a>
+    {{- else -}}
+    <a class="lab-more" href="{{ relURL "publications/" }}">論文一覧 →</a>
+    {{- end -}}
   </section>
   {{ end }}
 
