@@ -767,7 +767,9 @@ body:not(.page-home) h1 {
   gap: 0.5rem;
   flex-wrap: wrap;
 }
-/* --- News タグ共通（デフォルト: ニュートラル） --- */
+/* --- News タグ ---
+   背景・枠は全カテゴリー共通（ニュートラル）、テキスト色のみで区別する。
+   ⚠️ 新しいタグを追加する場合は archetypes/news.md のコメントも更新すること。 */
 .news-tag {
   display: inline-flex;
   align-items: center;
@@ -777,54 +779,19 @@ body:not(.page-home) h1 {
   border-radius: 3px;
   white-space: nowrap;
   letter-spacing: 0.03em;
-  /* デフォルト色（カテゴリー未定義時） */
-  background: rgba(90, 88, 82, 0.08);
+  /* 共通: 背景・枠 */
+  background: rgba(90, 88, 82, 0.07);
+  border: 1px solid rgba(90, 88, 82, 0.18);
+  /* デフォルト文字色（未定義タグ用） */
   color: var(--lab-neutral-600);
-  border: 1px solid rgba(90, 88, 82, 0.2);
 }
 
-/* --- カテゴリー別色分け（data-tag 属性で指定） ---
-   すべて同じ「薄い背景 + 濃いテキスト + 細いボーダー」形式で統一感を保つ */
-
-/* 論文掲載 — ブルー（--lab-blue の系統） */
-.news-tag[data-tag="論文掲載"],
-.news-tag[data-tag="Paper"] {
-  background: rgba(0, 85, 164, 0.08);
-  color: #004a8f;
-  border-color: rgba(0, 85, 164, 0.25);
-}
-
-/* 受賞 — アンバー（金色系、権威・称賛） */
-.news-tag[data-tag="受賞"],
-.news-tag[data-tag="Award"] {
-  background: rgba(180, 120, 0, 0.08);
-  color: #7a5200;
-  border-color: rgba(180, 120, 0, 0.25);
-}
-
-/* 学会発表 — ティール（--lab-accent の系統） */
-.news-tag[data-tag="学会発表"],
-.news-tag[data-tag="Conference"] {
-  background: rgba(0, 140, 140, 0.08);
-  color: #006868;
-  border-color: rgba(0, 140, 140, 0.25);
-}
-
-/* メンバー — グリーン（人・チーム） */
-.news-tag[data-tag="メンバー"],
-.news-tag[data-tag="Member"] {
-  background: rgba(30, 130, 70, 0.08);
-  color: #1a6b3b;
-  border-color: rgba(30, 130, 70, 0.25);
-}
-
-/* お知らせ — ニュートラル（ベースと同じ、上書き不要だが明示） */
-.news-tag[data-tag="お知らせ"],
-.news-tag[data-tag="Announcement"] {
-  background: rgba(90, 88, 82, 0.08);
-  color: var(--lab-neutral-600);
-  border-color: rgba(90, 88, 82, 0.2);
-}
+/* テキスト色のみ変化（背景・枠は上書きしない） */
+.news-tag[data-tag="論文掲載"], .news-tag[data-tag="Paper"]       { color: #004a8f; }
+.news-tag[data-tag="受賞"],     .news-tag[data-tag="Award"]        { color: #7a5200; }
+.news-tag[data-tag="学会発表"], .news-tag[data-tag="Conference"]   { color: #006868; }
+.news-tag[data-tag="メンバー"], .news-tag[data-tag="Member"]       { color: #1a6b3b; }
+/* お知らせ / Announcement はデフォルト色のため追加不要 */
 .news-back-link {
   margin-top: 2.5rem;
   padding-top: 1.5rem;
