@@ -4,7 +4,7 @@
 <div class="inner-page-header">
   <h1 class="inner-page-title">{{ .Title }}</h1>
   <p class="news-single-meta">
-    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006年1月2日" }}</time>
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
     {{ range .Params.tags }}
     <span class="news-tag">{{ . }}</span>
     {{ end }}
