@@ -694,8 +694,8 @@ body:not(.page-home) h1 {
 /* ナビ: 768px 以下でハンバーガーへ切り替え */
 @media (max-width: 768px) {
   .lab-nav-inner  { padding: 0 1.25rem; }
-  .lab-nav-links  { display: none; }
-  .lab-nav-hamburger { display: flex; }
+  .lab-nav-links  { display: none !important; }
+  .lab-nav-hamburger { display: flex !important; }
 }
 
 /* ナビ: 769px 以上ではモバイルメニューを完全非表示 */
