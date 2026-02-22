@@ -457,6 +457,88 @@ body:not(.page-home) h1 {
 .pub-doi { font-size: 0.82rem; font-weight: 500; color: var(--lab-blue); text-decoration: none; }
 .pub-doi:hover { text-decoration: underline; }
 
+/* ===== Research 詳細ページ ===== */
+.rd-cover {
+  width: 100%;
+  max-height: 440px;
+  overflow: hidden;
+  border-radius: 4px;
+  margin-bottom: 2.5rem;
+}
+.rd-cover img {
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+  display: block;
+}
+.rd-header {
+  margin-bottom: 2.25rem;
+}
+.rd-kicker {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--lab-red);
+  display: block;
+  margin-bottom: 0.65rem;
+}
+.rd-title {
+  font-family: "Playfair Display", "Noto Serif JP", serif !important;
+  font-size: clamp(1.75rem, 4vw, 2.625rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--lab-neutral-900) !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.rd-prose {
+  max-width: 720px;
+}
+.rd-prose > p:first-child {
+  font-size: 1.0625rem;
+  color: var(--lab-neutral-600);
+  line-height: 1.95;
+  font-weight: 400;
+  margin-bottom: 2.5rem;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--lab-accent);
+}
+.rd-prose p {
+  font-size: 0.9375rem;
+  color: var(--lab-neutral-600);
+  line-height: 1.95;
+  margin-bottom: 1rem;
+}
+.rd-prose h2 {
+  font-family: "Playfair Display", "Noto Serif JP", serif;
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--lab-neutral-900);
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--lab-blue-dark);
+  letter-spacing: -0.01em;
+}
+.rd-prose h3 {
+  font-family: "Inter", "Noto Sans JP", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--lab-neutral-900);
+  margin-top: 2rem;
+  margin-bottom: 0.6rem;
+}
+.rd-prose img {
+  max-width: 100%;
+  border-radius: 4px;
+  margin: 1.5rem 0;
+  display: block;
+}
+.rd-prose strong { color: var(--lab-neutral-900); }
+
 /* Research list (inner page) */
 .card-grid {
   display: grid;

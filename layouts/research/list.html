@@ -1,4 +1,7 @@
 {{ define "main" }}
+{{ if .Pages }}
+
+{{/* ===== Research 一覧ページ ===== */}}
 <header class="max-w-prose">
   <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">{{ .Title }}</h1>
 </header>
@@ -10,7 +13,6 @@
 {{ end }}
 
 {{ $themes := .Pages }}
-{{ if $themes }}
 <div class="card-grid mt-8">
   {{ range $themes }}
     {{- $page := . }}
@@ -34,5 +36,29 @@
     </article>
   {{ end }}
 </div>
+
+{{ else }}
+
+{{/* ===== Research テーマ詳細ページ ===== */}}
+{{ $images := .Resources.ByType "image" }}
+{{ $cover := $images.GetMatch (.Params.cover | default "*cover*") }}
+
+{{ if $cover }}
+<div class="rd-cover">
+  <img src="{{ $cover.RelPermalink }}" alt="{{ .Title }}" loading="eager">
+</div>
+{{ end }}
+
+<div class="rd-header">
+  <span class="rd-kicker">Research Theme</span>
+  <h1 class="rd-title">{{ .Title }}</h1>
+</div>
+
+{{ if .Content }}
+<div class="rd-prose">
+  {{ .Content | emojify }}
+</div>
+{{ end }}
+
 {{ end }}
 {{ end }}
