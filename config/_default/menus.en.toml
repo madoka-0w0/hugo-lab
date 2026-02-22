@@ -11,6 +11,11 @@
   weight = 20
 
 [[main]]
+  name   = "Publications"
+  url    = "/en/publications/"
+  weight = 30
+
+[[main]]
   name   = "Access"
   url    = "/en/access/"
-  weight = 30
+  weight = 60
