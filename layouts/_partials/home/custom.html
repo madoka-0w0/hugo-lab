@@ -1,71 +1,118 @@
-{{/* home/custom.html
-     params.toml の homepage.layout = "custom" で呼び出されるホームページレイアウト。
-     Congo の index.html → _partials/home/custom.html の順に解決される。
-
-     セクション構成:
-       1. Hero          ← layouts/_partials/hero.html
-       2. About         ← _index.md の本文
-       3. Latest News   ← content/news/ から最新 N 件を表示
-       4. Research      ← content/research/ のサブセクションをカード表示
+{{/* home/custom.html — Design 12 ホームページレイアウト
+     1. Hero
+     2. About（_index.md 本文）
+     3. News（content/news/ 最新4件）
+     4. Research（content/research/ サブページ カードグリッド）
+     5. Publications（data/publications.yaml 最新3件）
 */}}
 
 {{/* 1. Hero */}}
 {{ partial "hero.html" . }}
 
-{{/* 2. About */}}
-<section class="section-home" id="about">
-  <h2>{{ i18n "home.about_title" | default "研究室について" }}</h2>
-  <div class="prose dark:prose-invert max-w-none">
-    {{ .Content }}
-  </div>
-</section>
+{{/* コンテンツラッパー */}}
+<div class="lab-container">
 
-{{/* 3. Latest News */}}
-<section class="section-home" id="news">
-  <h2>{{ i18n "home.news_title" | default "お知らせ" }}</h2>
+  {{/* 2. About */}}
+  <section class="lab-about" id="about">
+    <span class="lab-kicker">About the Laboratory</span>
+    <h2 class="lab-about-heading">
+      {{- if eq .Site.Language.Lang "en" -}}
+        Integrated Research:<br>Detector · Analysis · Theory
+      {{- else -}}
+        実験・開発・解析の<br>一貫した研究体制
+      {{- end -}}
+    </h2>
+    <div class="lab-about-body">
+      {{ .Content }}
+    </div>
+  </section>
+
+  {{/* 3. News */}}
   {{ $news := where .Site.RegularPages "Section" "news" }}
-  {{ $news = $news | first (.Site.Params.homepage.recentLimit | default 5) }}
+  {{ $news = $news | first 4 }}
   {{ if $news }}
-    <ul class="news-list">
+  <section class="lab-news" id="news">
+    <div class="lab-section-rule">
+      <div class="lab-rule-thick"></div>
+      <span class="lab-rule-label">{{ if eq .Site.Language.Lang "en" }}News{{ else }}News{{ end }}</span>
+      <div class="lab-rule-thick"></div>
+    </div>
+    <div class="lab-news-list">
       {{ range $news }}
-        <li>
-          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
-          <a href="{{ .Permalink }}">{{ .Title }}</a>
-        </li>
+      <div class="lab-news-item">
+        <span class="lab-news-date">{{ .Date.Format "2006.01.02" }}</span>
+        <a class="lab-news-title" href="{{ .Permalink }}">{{ .Title }}</a>
+      </div>
       {{ end }}
-    </ul>
-    <p class="more-link"><a href="{{ relURL "news/" }}">{{ i18n "home.news_more" | default "ニュース一覧" }} →</a></p>
+    </div>
+    <a class="lab-more" href="{{ relURL "news/" }}">
+      {{- if eq .Site.Language.Lang "en" -}}All News →{{- else -}}お知らせ一覧 →{{- end -}}
+    </a>
+  </section>
   {{ end }}
-</section>
 
-{{/* 4. Research Topics
-     .Site.Sections から現在の言語に一致する "research" セクションを探し、
-     その直下のサブセクション（研究テーマ）をカード表示する。
-     where .Site.Pages "Section" "research" | "Kind" "section" だと
-     research 自体も含まれてしまうため、.Sections を使用する。
-*/}}
-<section class="section-home" id="research">
-  <h2>{{ i18n "home.research_title" | default "研究テーマ" }}</h2>
-  {{ $lang := .Site.Language.Lang }}
-  {{ range where .Site.Sections ".Language.Lang" $lang }}
-    {{ if eq .Section "research" }}
-      {{ with .Sections }}
-        <div class="card-grid">
-          {{ range . }}
-            <article class="card">
-              <img
-                src="{{ with .Params.thumbnail }}{{ relURL . }}{{ else }}{{ relURL "images/research/placeholder.png" }}{{ end }}"
-                alt="{{ .Title }}"
-                loading="lazy"
-              >
-              <div class="card-body">
-                <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-                <p>{{ .Description }}</p>
-              </div>
-            </article>
-          {{ end }}
-        </div>
+  {{/* 4. Research */}}
+  {{ $researchSection := site.GetPage "/research" }}
+  {{ if $researchSection }}
+  {{ $themes := $researchSection.Pages }}
+  {{ if $themes }}
+  <section class="lab-research" id="research">
+    <div class="lab-section-rule">
+      <div class="lab-rule-thick"></div>
+      <span class="lab-rule-label">Research Themes</span>
+      <div class="lab-rule-thick"></div>
+    </div>
+    <div class="lab-card-row">
+      {{ range $themes }}
+      {{ $page := . }}
+      {{ $images := .Resources.ByType "image" }}
+      {{ $cover := $images.GetMatch (.Params.cover | default "*cover*") }}
+      <article class="lab-card-article">
+        {{ if $cover }}
+          <img class="lab-card-img" src="{{ $cover.RelPermalink }}" alt="{{ $page.Title }}" loading="lazy">
+        {{ else }}
+          <div class="lab-card-img-placeholder lab-card-img"></div>
+        {{ end }}
+        <span class="lab-card-label">{{ .Params.kicker | default "Research" }}</span>
+        <h3><a href="{{ $page.Permalink }}">{{ $page.Title }}</a></h3>
+        <p>{{ $page.Description }}</p>
+        <a class="lab-card-link" href="{{ $page.Permalink }}">
+          {{- if eq $.Site.Language.Lang "en" -}}Learn more →{{- else -}}詳細を見る →{{- end -}}
+        </a>
+      </article>
       {{ end }}
-    {{ end }}
+    </div>
+  </section>
   {{ end }}
-</section>
+  {{ end }}
+
+  {{/* 5. Publications（最新3件）*/}}
+  {{ $pubs := .Site.Data.publications }}
+  {{ if $pubs }}
+  <section class="lab-pubs" id="publications">
+    <div class="lab-section-rule">
+      <div class="lab-rule-thick"></div>
+      <span class="lab-rule-label">Publications</span>
+      <div class="lab-rule-thick"></div>
+    </div>
+    <div class="lab-pub-list">
+      {{ range first 3 $pubs }}
+      <div class="lab-pub-item">
+        <span class="lab-pub-journal">
+          {{ .journal }}{{ if .volume }} <strong>{{ .volume }}</strong>{{ end }} ({{ .year }})
+        </span>
+        {{ if .doi }}
+          <a class="lab-pub-title" href="https://doi.org/{{ .doi }}" target="_blank" rel="noopener noreferrer">{{ .title }}</a>
+        {{ else }}
+          <span class="lab-pub-title">{{ .title }}</span>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+    <a class="lab-more" href="{{ relURL "publications/" }}">
+      {{- if eq .Site.Language.Lang "en" -}}All Publications →{{- else -}}論文一覧 →{{- end -}}
+    </a>
+  </section>
+  {{ end }}
+
+</div>{{/* /.lab-container */}}

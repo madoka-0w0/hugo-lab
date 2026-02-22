@@ -1,0 +1,11 @@
+{{/* header/hamburger.html — ダークネイビー固定ナビ */}}
+<nav class="lab-nav" id="lab-nav">
+  <div class="lab-nav-inner">
+    <a class="lab-nav-logo" href="{{ .Site.Home.Permalink }}">{{ .Site.Title }}</a>
+    <ul class="lab-nav-links">
+      {{ range .Site.Menus.main }}
+        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+</nav>
