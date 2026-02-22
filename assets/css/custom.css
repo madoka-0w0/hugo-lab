@@ -80,11 +80,38 @@ body:not(.page-home) #main-content {
   text-decoration: none;
   color: rgba(255,255,255,0.72);
   letter-spacing: 0.08em;
-  text-transform: uppercase;
   font-weight: 600;
   transition: color 0.15s;
 }
 .lab-nav-links a:hover { color: #fff; }
+
+/* ツールバー（検索＋ハンバーガーのグループ）*/
+.lab-nav-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+/* 検索ボタン */
+.lab-nav-search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: rgba(255,255,255,0.72);
+  padding: 6px;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+}
+.lab-nav-search-btn:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+}
 
 /* ハンバーガーボタン（デスクトップでは非表示）*/
 .lab-nav-hamburger {
