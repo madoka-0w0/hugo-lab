@@ -1,0 +1,54 @@
+{{/* gallery/list.html — ギャラリーページ（フィルター付きグリッド） */}}
+{{ define "main" }}
+
+<div class="inner-page-header">
+  <h1 class="inner-page-title">{{ .Title }}</h1>
+  {{ with .Description }}
+  <p class="inner-page-desc">{{ . }}</p>
+  {{ end }}
+</div>
+
+<section id="main-content" class="page-content">
+  <div class="gallery-categories">
+    <button class="gallery-filter active" data-filter="all">すべて</button>
+    <button class="gallery-filter" data-filter="lab">研究室</button>
+    <button class="gallery-filter" data-filter="conf">学会・イベント</button>
+    <button class="gallery-filter" data-filter="exp">実験装置</button>
+  </div>
+
+  <div class="gallery-grid" id="gallery-grid">
+    {{ range .Site.Data.gallery }}
+    <div class="gallery-item" data-category="{{ .category }}">
+      <a href="{{ .src }}" class="gallery-link" data-title="{{ .caption }}">
+        <img src="{{ .src }}" alt="{{ .caption }}" loading="lazy" class="gallery-thumb">
+        <div class="gallery-overlay">
+          <span class="gallery-caption">{{ .caption }}</span>
+        </div>
+      </a>
+    </div>
+    {{ end }}
+  </div>
+</section>
+
+<script>
+(function () {
+  document.querySelectorAll('.gallery-filter').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var filter = this.dataset.filter;
+      document.querySelectorAll('.gallery-filter').forEach(function (b) {
+        b.classList.remove('active');
+      });
+      this.classList.add('active');
+      document.querySelectorAll('.gallery-item').forEach(function (item) {
+        if (filter === 'all' || item.dataset.category === filter) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  });
+}());
+</script>
+
+{{ end }}
