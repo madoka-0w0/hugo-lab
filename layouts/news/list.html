@@ -1,0 +1,31 @@
+{{/* news/list.html — News一覧ページ（Design 12）*/}}
+{{ define "main" }}
+
+<div class="inner-page-header">
+  <h1 class="inner-page-title">{{ .Title }}</h1>
+  {{ with .Description }}
+  <p class="inner-page-desc">{{ . }}</p>
+  {{ end }}
+</div>
+
+{{ if .Data.Pages }}
+<section class="news-archive">
+   <div class="news-archive-list">
+    {{ range .Pages }}
+    <div class="news-archive-item">
+      <span class="news-archive-date">{{ .Date.Format "2006.01.02" }}</span>
+      <a class="news-archive-title" href="{{ .Permalink }}">{{ .Title }}</a>
+    </div>
+    {{ end }}
+  </div>
+  {{ partial "pagination.html" . }}
+</section>
+{{ else }}
+<section class="prose mt-10 dark:prose-invert">
+  <p class="border-t py-8">
+    <em>{{ i18n "list.no_articles" | emojify }}</em>
+  </p>
+</section>
+{{ end }}
+
+{{ end }}
