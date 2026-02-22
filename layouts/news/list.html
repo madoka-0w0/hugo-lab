@@ -14,7 +14,10 @@
     {{ range .Pages }}
     <div class="news-archive-item">
       <span class="news-archive-date">{{ .Date.Format "2006.01.02" }}</span>
-      <a class="news-archive-title" href="{{ .Permalink }}">{{ .Title }}</a>
+      <div class="news-archive-body">
+        {{ range .Params.tags }}<span class="news-tag">{{ . }}</span>{{ end }}
+        <a class="news-archive-title" href="{{ .Permalink }}">{{ .Title }}</a>
+      </div>
     </div>
     {{ end }}
   </div>

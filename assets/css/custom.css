@@ -341,6 +341,12 @@ body:not(.page-home) #main-content {
   letter-spacing: 0.04em;
   white-space: nowrap;
 }
+.lab-news-body {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
 .lab-news-title {
   font-size: 0.9rem;
   color: var(--lab-neutral-900);
@@ -508,6 +514,12 @@ body:not(.page-home) #main-content {
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.04em;
   white-space: nowrap;
+}
+.news-archive-body {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.3rem;
 }
 .news-archive-title {
   font-size: 0.9375rem;
