@@ -10,17 +10,14 @@
 
 {{ if .Data.Pages }}
 <section class="news-archive">
-  {{ range (.Paginate (.Pages.GroupByDate "2006")).PageGroups }}
-  <h2 class="pub-year-heading">{{ .Key }}</h2>
-  <div class="news-archive-list">
+   <div class="news-archive-list">
     {{ range .Pages }}
     <div class="news-archive-item">
-      <span class="news-archive-date">{{ .Date.Format "01.02" }}</span>
+      <span class="news-archive-date">{{ .Date.Format "2006.01.02" }}</span>
       <a class="news-archive-title" href="{{ .Permalink }}">{{ .Title }}</a>
     </div>
     {{ end }}
   </div>
-  {{ end }}
   {{ partial "pagination.html" . }}
 </section>
 {{ else }}

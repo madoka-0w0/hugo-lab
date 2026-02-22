@@ -43,6 +43,18 @@
 - worktree を使う場合は `../lab_homepage_tmp/lab-<task-id>/` に作成する
 - worktree 内でサブモジュール未初期化の場合は `git submodule update --init --recursive` を実行する
 
+## コンテンツ・データの原則
+
+**サイト内のすべてのコンテンツ・データは架空のものを使用すること。**
+
+- 論文（`data/publications.yaml`）：架空の著者名・タイトル・雑誌・DOI を使用する。DOI は `10.9999/` など実在しないプレフィックスを使う
+- メンバー（`data/members.yaml`）：実在しない人名・メールアドレスを使用する
+- ニュース（`content/news/`）：実在しないイベント・受賞・発表内容を記述する
+- 研究テーマ（`content/research/`）：素粒子実験の文脈に即した架空の内容にする
+- 施設・設備（Facilities）、リンク（Links）、アクセス（Access）なども同様
+- 画像のプレースホルダーURL（placehold.co 等）は使用可
+- **実在する論文・人物・組織・URLを誤ってコンテンツに埋め込まないこと**
+
 ## コーディング規約
 
 - Hugo ディレクトリ構成：config/ content/ content.en/ data/ layouts/ static/ i18n/ themes/

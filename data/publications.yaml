@@ -1,43 +1,59 @@
 # Publications data — まど研究室
-# フォーマット: year（降順）/ authors / title / journal / volume / pages / doi
-# ※ 仮データ。実データに差し替えること。
+# ※ すべて架空データ。著者・タイトル・DOI はいずれも実在しない。
+#   DOI プレフィックス 10.0000/ は未割り当て（実在する出版社に紐づかない）。
+
+- year: 2025
+  authors: "T. Yamada, K. Suzuki, H. Tanaka, Y. Sato et al. (SAMPLE-EXP Collaboration)"
+  title: "Precision measurement of Dummy neutrino mixing angle θ₁₃ using reactor antineutrinos at SAMPLE-EXP"
+  journal: "Physical Review Letters"
+  volume: "134"
+  pages: "071802"
+  doi: "10.0000/PhysRevLett.134.071802"
 
 - year: 2024
-  authors: "A. Mado, T. Tanaka, K. Yamamoto, H. Suzuki et al. (Belle II Collaboration)"
-  title: "Search for lepton-flavor-violating τ → μγ decays at Belle II"
-  journal: "Physical Review Letters"
-  volume: "133"
-  pages: "011801"
-  doi: "10.1103/PhysRevLett.133.011801"
+  authors: "T. Yamada, H. Tanaka, M. Ito, R. Kato et al. (SAMPLE-EXP Collaboration)"
+  title: "Search for sterile Dummy neutrino oscillations with a near detector at SAMPLE-EXP"
+  journal: "Physical Review D"
+  volume: "110"
+  pages: "052014"
+  doi: "10.0000/PhysRevD.110.052014"
+
+- year: 2024
+  authors: "K. Suzuki, T. Yamada, N. Kobayashi"
+  title: "Dummy Development of a high-light-yield liquid scintillator detector for MeV-scale neutrino detection"
+  journal: "Dummy Nuclear Instruments and Methods in Physics Research A"
+  volume: "1058"
+  pages: "168823"
+  doi: "10.0000/j.nima.2024.168823"
 
 - year: 2023
-  authors: "A. Mado, T. Tanaka, S. Ito, K. Kobayashi et al. (Belle II Collaboration)"
-  title: "Measurement of the branching fraction and CP asymmetry in B → K*γ at Belle II"
-  journal: "Physical Review D"
-  volume: "108"
-  pages: "032001"
-  doi: "10.1103/PhysRevD.108.032001"
-
-- year: 2022
-  authors: "A. Mado, T. Tanaka, Y. Nakamura, M. Watanabe et al. (Belle II Collaboration)"
-  title: "Observation of B⁰ → D*⁻τ⁺ντ and test of lepton universality at Belle II"
+  authors: "T. Yamada, Y. Sato, S. Watanabe, H. Tanaka et al. (SAMPLE-EXP Collaboration)"
+  title: "First observation of reactor Dummy neutrino disappearance at a baseline of 1.8 km"
   journal: "Journal of High Energy Physics"
-  volume: "2022"
-  pages: "165"
-  doi: "10.1007/JHEP06(2022)165"
+  volume: "2023"
+  pages: "089"
+  doi: "10.0000/JHEP09(2023)089"
+
+- year: 2023
+  authors: "M. Ito, T. Yamada, K. Suzuki"
+  title: "Convolutional Dummy neural network approach to energy reconstruction in a segmented scintillator detector"
+  journal: "Journal of Instrumentation"
+  volume: "18"
+  pages: "P04031"
+  doi: "10.0000/1748-0221/18/04/P04031"
 
 - year: 2022
-  authors: "A. Mado, R. Kimura, T. Tanaka"
-  title: "Development of a scintillator-based time-of-flight detector for the Belle II experiment"
-  journal: "Nuclear Instruments and Methods in Physics Research A"
-  volume: "1036"
-  pages: "166825"
-  doi: "10.1016/j.nima.2022.166825"
+  authors: "T. Yamada, K. Suzuki, R. Kato, N. Kobayashi et al. (SAMPLE-EXP Collaboration)"
+  title: "Measurement of the Dummy antineutrino energy spectrum above the inverse beta decay threshold"
+  journal: "Physical Review Letters"
+  volume: "129"
+  pages: "261803"
+  doi: "10.0000/PhysRevLett.129.261803"
 
 - year: 2021
-  authors: "A. Mado, T. Tanaka, H. Inoue et al. (Belle II Collaboration)"
-  title: "First measurement of the inclusive semileptonic branching fraction B → Xclν at Belle II"
+  authors: "K. Suzuki, T. Yamada, S. Watanabe, M. Ito"
+  title: "Calibration of the Dummy energy scale using spallation neutrons in a Gd-doped water Cherenkov detector"
   journal: "Progress of Theoretical and Experimental Physics"
   volume: "2021"
-  pages: "013C01"
-  doi: "10.1093/ptep/ptaa173"
+  pages: "043H01"
+  doi: "10.0000/ptep/ptab012"
