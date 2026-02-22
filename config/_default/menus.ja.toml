@@ -22,21 +22,11 @@
   weight = 40
 
 [[main]]
-  name   = "Facilities"
-  url    = "/facilities/"
-  weight = 50
-
-[[main]]
   name   = "Gallery"
   url    = "/gallery/"
-  weight = 60
-
-[[main]]
-  name   = "Links"
-  url    = "/links/"
-  weight = 70
+  weight = 50
 
 [[main]]
   name   = "Access"
   url    = "/access/"
-  weight = 80
+  weight = 60
