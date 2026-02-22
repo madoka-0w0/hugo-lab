@@ -1,0 +1,23 @@
+{{/* news/single.html — News 個別記事ページ */}}
+{{ define "main" }}
+
+<div class="inner-page-header">
+  <h1 class="inner-page-title">{{ .Title }}</h1>
+  <p class="news-single-meta">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+    {{ range .Params.tags }}
+    <span class="news-tag" data-tag="{{ . }}">{{ . }}</span>
+    {{ end }}
+  </p>
+</div>
+
+<section id="main-content" class="page-content">
+  <div class="prose prose-lab max-w-none">
+    {{ .Content }}
+  </div>
+  <div class="news-back-link">
+    <a href="{{ "/news/" | relURL }}">&larr; ニュース一覧に戻る</a>
+  </div>
+</section>
+
+{{ end }}

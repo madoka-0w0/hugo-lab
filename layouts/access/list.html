@@ -1,0 +1,104 @@
+{{/* access/list.html — アクセス・連絡先ページ */}}
+{{ define "main" }}
+  {{ $isEN := eq .Site.Language.Lang "en" }}
+
+  <div class="inner-page-header">
+    <h1 class="inner-page-title">{{ .Title }}</h1>
+  </div>
+
+  <section id="main-content" class="page-content">
+    <div class="access-grid">
+
+      {{/* 左カラム: 連絡先 + 交通アクセス */}}
+      <div class="access-info-col">
+
+        <div class="access-card">
+          <h2 class="access-card-title">
+            {{- if $isEN -}}Contact Information{{- else -}}連絡先{{- end -}}
+          </h2>
+          <dl class="access-dl">
+            <dt>{{ if $isEN }}Organization{{ else }}所属{{ end }}</dt>
+            <dd>
+              {{ if $isEN }}
+                Sample University, Faculty of Science,<br>
+                Department of Physics<br>
+                Particle Physics Experimental Laboratory [Sample Data]
+              {{ else }}
+                サンプル大学 理学部物理学科<br>
+                素粒子実験研究室 [架空データ]
+              {{ end }}
+            </dd>
+
+            <dt>{{ if $isEN }}Location{{ else }}場所{{ end }}</dt>
+            <dd>
+              {{ if $isEN }}
+                Building of Science 1, Room 306 [Sample Data]
+              {{ else }}
+                理学部1号館 306号室 [架空データ]
+              {{ end }}
+            </dd>
+
+            <dt>{{ if $isEN }}Address{{ else }}住所{{ end }}</dt>
+            <dd>
+              {{ if $isEN }}
+                1-1 Daigakucho, Sample City, Sample Prefecture 000-0000, Japan [Sample Data]
+              {{ else }}
+                〒000-0000 ○○県○○市大学町1-1 [架空データ]
+              {{ end }}
+            </dd>
+
+            <dt>Email</dt>
+            <dd><a href="mailto:sample-lab@example.ac.jp">sample-lab[at]example.ac.jp</a></dd>
+
+            <dt>{{ if $isEN }}Phone{{ else }}電話{{ end }}</dt>
+            <dd>000-000-0000 [架空データ]</dd>
+          </dl>
+        </div>
+
+        <div class="access-card">
+          <h2 class="access-card-title">
+            {{- if $isEN -}}Access{{- else -}}交通アクセス{{- end -}}
+          </h2>
+          <ul class="access-transport-list">
+            <li>
+              <span class="access-transport-icon">🚃</span>
+              <span>
+                {{ if $isEN }}
+                  15-min walk from Sample Station (Sample Line) [Sample Data]
+                {{ else }}
+                  ○○駅（○○線）から徒歩15分 [架空データ]
+                {{ end }}
+              </span>
+            </li>
+            <li>
+              <span class="access-transport-icon">🚌</span>
+              <span>
+                {{ if $isEN }}
+                  5-min walk from Sample Bus Stop [Sample Data]
+                {{ else }}
+                  ○○バス停から徒歩5分 [架空データ]
+                {{ end }}
+              </span>
+            </li>
+          </ul>
+        </div>
+
+      </div>{{/* /.access-info-col */}}
+
+      {{/* 右カラム: 地図 */}}
+      <div class="access-map-col">
+        <div class="access-map-placeholder">
+          <p class="access-map-label">
+            {{ if $isEN }}
+              Map (to be configured after deployment) [Sample Data]
+            {{ else }}
+              地図（本番デプロイ後に設定）[架空データ]
+            {{ end }}
+          </p>
+        </div>
+      </div>
+
+    </div>{{/* /.access-grid */}}
+  </section>
+
+{{ end }}
