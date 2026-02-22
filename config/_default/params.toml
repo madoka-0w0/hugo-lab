@@ -24,8 +24,7 @@ fingerprintAlgorithm = "sha256"
 organization = "サンプル大学 理学部物理学科"
 
 [header]
-  # hamburger: モバイルでハンバーガーメニューに切り替わるレスポンシブヘッダー
-  layout    = "hamburger"
+  layout    = "custom"
   showTitle = true
 
 [footer]
