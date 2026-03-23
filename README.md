@@ -38,6 +38,11 @@ cd hugo-lab
 ```
 
 > **注意**: `--recurse-submodules` が必要です（テーマが submodule として管理されているため）。
+>
+> オプションなしでクローンしてしまった場合は、クローン後に以下を実行してください:
+> ```bash
+> git submodule update --init --recursive
+> ```
 
 ---
 
