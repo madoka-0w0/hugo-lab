@@ -26,6 +26,10 @@ Hugo（静的サイトジェネレーター）と Congo テーマで構築され
   → [gohugo.io/installation](https://gohugo.io/installation/) を参照
   → Mac の場合: `brew install hugo`（Homebrew が必要）
 
+> **Go（プログラミング言語）は不要です。**
+> Hugo は Go で書かれていますが、コンパイル済みのバイナリとして配布されているため、
+> Go を別途インストールする必要はありません。
+
 ### リポジトリのクローン
 
 ```bash
