@@ -46,6 +46,9 @@ jobs:
           # GA4 など本番環境限定設定を有効化
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
+          # GA4 測定 ID（GitHub リポジトリ Settings > Secrets で GA4_MEASUREMENT_ID を設定）
+          # 未設定の場合は GA4 タグが挿入されない
+          HUGO_SERVICES_GOOGLEANALYTICS_ID: ${{ secrets.GA4_MEASUREMENT_ID }}
         run: |
           hugo \
             --gc \
