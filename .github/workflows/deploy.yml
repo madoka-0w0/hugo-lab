@@ -48,7 +48,8 @@ jobs:
           HUGO_ENV: production
           # GA4 測定 ID（GitHub リポジトリ Settings > Secrets で GA4_MEASUREMENT_ID を設定）
           # 未設定の場合は GA4 タグが挿入されない
-          HUGO_SERVICES_GOOGLEANALYTICS_ID: ${{ secrets.GA4_MEASUREMENT_ID }}
+          # HUGO_PARAMS_GOOGLEANALYTICS → .Site.Params.googleanalytics → layouts/_partials/google_analytics.html
+          HUGO_PARAMS_GOOGLEANALYTICS: ${{ secrets.GA4_MEASUREMENT_ID }}
         run: |
           hugo \
             --gc \
