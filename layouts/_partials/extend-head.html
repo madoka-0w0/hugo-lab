@@ -3,3 +3,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@300;400;500;600;700;900&family=Noto+Sans+JP:wght@300;400;700&family=Noto+Serif+JP:wght@400;700&display=swap">
+{{/* hreflang — 多言語 SEO: 翻訳ページが存在する場合のみ出力 */}}
+{{ if .IsTranslated -}}
+  {{ range .AllTranslations -}}
+<link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}" />
+  {{- end }}
+<link rel="alternate" hreflang="x-default" href="{{ (index .AllTranslations 0).Permalink }}" />
+{{- end }}
