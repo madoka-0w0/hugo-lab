@@ -17,8 +17,11 @@ enableQuicklink        = true
 fingerprintAlgorithm = "sha256"
 
 # Google Analytics GA4
-# 測定 ID は hugo.toml の [services.googleAnalytics] セクションで設定する。
-# 詳細は config/_default/hugo.toml を参照。
+# 測定 ID は GitHub Secrets（GA4_MEASUREMENT_ID）から環境変数で注入される。
+# deploy.yml: HUGO_PARAMS_GOOGLEANALYTICS → .Site.Params.googleanalytics → layouts/_partials/google_analytics.html
+# 未設定時は空文字のまま GA4 タグは挿入されない。
+# ⚠️ アンダースコアを含むパラメータ名は Hugo の env var パスセパレータと競合するため使用不可。
+googleanalytics = ""  # HUGO_PARAMS_GOOGLEANALYTICS 環境変数で上書きされる
 
 # OGP デフォルト画像（SNS シェア時・og:image のフォールバック）
 images = ["/images/hero/hero.jpg"]

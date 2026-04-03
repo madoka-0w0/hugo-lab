@@ -29,12 +29,4 @@ summaryLength   = 0
 [services]
   [services.x]
     disableInlineCSS = true
-  # Google Analytics GA4
-  # 測定 ID は GitHub Secrets で管理し、環境変数として渡す（設定値をリポジトリに残さない）。
-  # GitHub: Settings > Secrets and variables > Actions > New repository secret
-  #   Name: GA4_MEASUREMENT_ID  /  Value: G-XXXXXXXXXX
-  # deploy.yml の HUGO_SERVICES_GOOGLEANALYTICS_ID が Hugo に渡され、本番ビルドのみ有効化される。
-  # ⚠️ このセクション自体（id = ""）が必須: Hugo の Viper がキーを認識しないと
-  #    環境変数オーバーライドが機能しない。
-  [services.googleAnalytics]
-    id = ""  # HUGO_SERVICES_GOOGLEANALYTICS_ID 環境変数で上書きされる
+  # Google Analytics GA4: params.toml の ga4_id / HUGO_PARAMS_GA4_ID で管理。
