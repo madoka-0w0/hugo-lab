@@ -9,6 +9,8 @@
   weight       = 1
   title        = "まど研究室"
   contentDir   = "content"
+  [ja.params]
+    description = "サンプル大学 理学部物理学科 まど研究室の公式サイト。素粒子実験を通じて宇宙の基本法則の解明に挑む研究グループです。"
 
 [en]
   languageName = "English"
@@ -16,3 +18,5 @@
   weight       = 2
   title        = "Mado Lab"
   contentDir   = "content.en"
+  [en.params]
+    description = "Official website of the Particle Physics Experimental Laboratory, Department of Physics, Sample University. We explore the fundamental laws of the universe through particle physics experiments."

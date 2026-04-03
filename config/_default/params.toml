@@ -17,9 +17,14 @@ enableQuicklink        = true
 fingerprintAlgorithm = "sha256"
 
 # Google Analytics GA4
-# Measurement ID は本番デプロイ後に設定する。
-# analytics.html partial で hugo.Environment == "production" のときのみ有効化。
-# ga4_id = "G-XXXXXXXXXX"
+# 測定 ID は hugo.toml の [services.googleAnalytics] セクションで設定する。
+# 詳細は config/_default/hugo.toml を参照。
+
+# OGP デフォルト画像（SNS シェア時・og:image のフォールバック）
+images = ["/images/hero/hero.jpg"]
+
+# SEO キーワード（各ページの keywords と自動でマージされる）
+keywords = ["素粒子実験", "素粒子物理学", "ニュートリノ", "暗黒物質", "検出器", "研究室"]
 
 organization = "サンプル大学 理学部物理学科"
 

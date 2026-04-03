@@ -29,3 +29,8 @@ summaryLength   = 0
 [services]
   [services.x]
     disableInlineCSS = true
+  # Google Analytics GA4
+  # 本番サイトの測定 ID を取得後、以下のコメントを解除して設定する。
+  # hugo.IsProduction が true（HUGO_ENVIRONMENT=production）のときのみ有効化される。
+  # [services.googleAnalytics]
+  #   ID = "G-XXXXXXXXXX"
