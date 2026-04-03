@@ -24,7 +24,7 @@ fingerprintAlgorithm = "sha256"
 googleanalytics = ""  # HUGO_PARAMS_GOOGLEANALYTICS 環境変数で上書きされる
 
 # OGP デフォルト画像（SNS シェア時・og:image のフォールバック）
-images = ["/images/hero/hero.jpg"]
+images = ["images/hero/hero.jpg"]
 
 # SEO キーワード（各ページの keywords と自動でマージされる）
 keywords = ["素粒子実験", "素粒子物理学", "ニュートリノ", "暗黒物質", "検出器", "研究室"]
