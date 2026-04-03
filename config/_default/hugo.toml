@@ -34,3 +34,7 @@ summaryLength   = 0
   # GitHub: Settings > Secrets and variables > Actions > New repository secret
   #   Name: GA4_MEASUREMENT_ID  /  Value: G-XXXXXXXXXX
   # deploy.yml の HUGO_SERVICES_GOOGLEANALYTICS_ID が Hugo に渡され、本番ビルドのみ有効化される。
+  # ⚠️ このセクション自体（id = ""）が必須: Hugo の Viper がキーを認識しないと
+  #    環境変数オーバーライドが機能しない。
+  [services.googleAnalytics]
+    id = ""  # HUGO_SERVICES_GOOGLEANALYTICS_ID 環境変数で上書きされる
